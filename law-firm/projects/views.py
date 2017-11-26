@@ -6,14 +6,16 @@ from django.urls import reverse_lazy, reverse
 from django.utils.html import format_html
 from django.views.generic import TemplateView, UpdateView, CreateView, FormView
 from django.utils.translation import ugettext_lazy as _
-from django_tables2 import SingleTableView, MultiTableMixin
+from django_filters.views import FilterView
+from django_tables2 import SingleTableView, MultiTableMixin, SingleTableMixin
 
+from .models import *
+from .forms import *
+from .tables import *
+from .filters import ProjectFilter, CaseFilter
 from accounting.forms import NewFundRequestForm
 from archive.models import DocumentMovement
 from archive.tables import DocumentMovementTable
-from .tables import *
-from .models import *
-from .forms import *
 from accounting.tables import *
 
 
@@ -27,13 +29,13 @@ class Index(TemplateView):
     template_name = 'projects/index.html'
 
 
-class ProjectListing(BaseLawyerView, SingleTableView):
+class ProjectListing(BaseLawyerView, SingleTableMixin, FilterView):
     model = Case
     # table_class = CaseTable
     # table_pagination = {
     #     'per_page': 10
     # }
-
+    # filterset_class = ProjectFilter
     template_name = 'projects/projects_listing.html'
 
     def get_table_class(self):
@@ -79,7 +81,19 @@ class ProjectListing(BaseLawyerView, SingleTableView):
             context['header_title'] = _('Consultations')
             context['new_project_text'] = _('New Consultation')
 
+        context['search_form'] = BaseCrispySearchForm
+
         return context
+
+    def get_filterset_class(self):
+        p_type = self.kwargs['p_type']
+
+        if p_type.lower() == 'case':
+            return CaseFilter
+        elif p_type.lower() == 'paperwork':
+            return ProjectFilter
+        else:
+            return ProjectFilter
 
 
 class BaseFormView(object):

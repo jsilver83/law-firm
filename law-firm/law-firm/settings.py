@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'djmoney',
     'django_tables2',
     'crispy_forms',
+    'django_filters',
 
     'django.contrib.admin',
     'django.contrib.auth',

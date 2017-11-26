@@ -16,6 +16,14 @@ class BaseCrispyForm:
         self.helper.field_class = 'col-lg-7'
 
 
+class BaseCrispySearchForm(BaseCrispyForm):
+
+    def __init__(self, *args, **kwargs):
+        super(BaseCrispySearchForm, self).__init__(*args, **kwargs)
+        self.helper.add_input(Submit('search', _('Search')))
+        self.helper.form_method = 'get'
+
+
 class BaseUpdatedByForm(BaseCrispyForm):
 
     def __init__(self, *args, **kwargs):

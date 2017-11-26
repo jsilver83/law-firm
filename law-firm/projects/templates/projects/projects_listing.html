@@ -1,6 +1,8 @@
 {% extends "base_site.html" %}
 {% load i18n %}
 {% load render_table from django_tables2 %}
+{% load crispy_forms_tags %}
+
 {% block title %} Table Dynamic {% endblock title %}
 
 {% block stylesheets %}
@@ -27,9 +29,18 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="x_panel">
 					<div class="x_content">
-						<a href="{% url 'new_project' p_type %}" class="btn btn-success">
-							<i class="fa fa-plus"></i> {{ new_project_text }}
-						</a>
+						<div class="row">
+							<div class="col-md-3">
+								<a href="{% url 'new_project' p_type %}" class="btn btn-success">
+									<i class="fa fa-plus"></i> {{ new_project_text }}
+								</a>
+							</div>
+							{% if filter %}
+								<div class="col-md-6">
+									{% crispy filter.form search_form.helper %}
+								</div>
+							{% endif %}
+						</div>
 						<hr>
 						{% render_table table %}
 					</div>

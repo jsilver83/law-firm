@@ -15,7 +15,8 @@ class ProjectTable(tables.Table):
         fields = ['title', 'status', 'main_assignee', 'client', ]
         exclude = ['id']
         attrs = {'class': 'table table-striped table-bordered',
-                 'id': 'datatable'}
+                 # 'id': 'datatable',
+                 }
 
     def render_client(self, value):
         if value.client.organization:
@@ -47,7 +48,7 @@ class ProjectTable(tables.Table):
 
 class CaseTable(ProjectTable):
     class Meta(ProjectTable.Meta):
-        fields = ProjectTable.Meta.fields + ['client_role', 'type', 'court', 'updated_on']
+        fields = ProjectTable.Meta.fields + ['client_role', 'type', 'case_reference', 'court', 'updated_on']
 
 
 class ReminderTable(tables.Table):

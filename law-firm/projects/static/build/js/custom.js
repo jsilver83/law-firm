@@ -5121,3 +5121,19 @@ $(document).ready(function() {
     init_autocomplete();
 
 });
+
+//Added by joud
+$(function(){
+    $('.datetimeinput').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "timePicker": true,
+        "autoApply": true,
+        "autoUpdateInput": true,
+        "timePickerIncrement": 5,
+        locale: {
+            format: 'YYYY-MM-DD HH:mm'
+        },
+        "opens": "center"});
+});
+//end of joud addition

@@ -135,6 +135,23 @@ USE_L10N = True
 
 USE_TZ = True
 
+# DATETIME_INPUT_FORMATS = [
+#     '%Y-%m-%d %I:%M %p',     # '2006-10-25 02:30 PM'
+#     '%Y-%m-%d %I:%M:%S %p',  # '2006-10-25 02:30:59 PM'
+#     '%Y-%m-%d %H:%M:%S',     # '2006-10-25 14:30:59'
+#     '%Y-%m-%d %H:%M:%S.%f',  # '2006-10-25 14:30:59.000200'
+#     '%Y-%m-%d %H:%M',        # '2006-10-25 14:30'
+#     '%Y-%m-%d',              # '2006-10-25'
+#     '%m/%d/%Y %H:%M:%S',     # '10/25/2006 14:30:59'
+#     '%m/%d/%Y %H:%M:%S.%f',  # '10/25/2006 14:30:59.000200'
+#     '%m/%d/%Y %H:%M',        # '10/25/2006 14:30'
+#     '%m/%d/%Y',              # '10/25/2006'
+#     '%m/%d/%y %H:%M:%S',     # '10/25/06 14:30:59'
+#     '%m/%d/%y %H:%M:%S.%f',  # '10/25/06 14:30:59.000200'
+#     '%m/%d/%y %H:%M',        # '10/25/06 14:30'
+#     '%m/%d/%y',              # '10/25/06'
+# ]
+
 LANGUAGES = [
     ('ar', _('Arabic')),
     ('en', _('English')),
@@ -154,3 +171,12 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Override settings using environment-specific settings, if any
+try:
+    from local_settings import *
+except ImportError:
+    print('local_settings.py not found')

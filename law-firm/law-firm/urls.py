@@ -16,12 +16,18 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^projects/', include('projects.urls')),
 
+    url(r'^archive/', include('archive.urls')),
+
+    url(r'^accounting/', include('accounting.urls')),
+
     url(r'^app/', include('app.urls')),
     url(r'^', include('app.urls')),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

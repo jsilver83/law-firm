@@ -20,3 +20,5 @@ law-firm/law_firm/settings/local.py
 *.mo
 .idea
 .DS_Store
+law-firm/media/
+law-firm/law-firm/local_settings.py

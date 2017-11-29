@@ -1,4 +1,5 @@
-from crispy_forms.layout import Submit, Layout, ButtonHolder, Fieldset
+from crispy_forms.bootstrap import FormActions, StrictButton
+from crispy_forms.layout import Submit, Layout, ButtonHolder, Fieldset, Button, HTML
 from crispy_forms.helper import FormHelper
 
 from django.utils.translation import ugettext_lazy as _
@@ -20,7 +21,7 @@ class BaseCrispySearchForm(BaseCrispyForm):
 
     def __init__(self, *args, **kwargs):
         super(BaseCrispySearchForm, self).__init__(*args, **kwargs)
-        self.helper.add_input(Submit('search', _('Search')))
+        self.helper.add_input(Submit('search', _('Search'), css_class='btn btn-primary'))
         self.helper.form_method = 'get'
 
 

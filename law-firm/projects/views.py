@@ -12,7 +12,7 @@ from django_tables2 import SingleTableView, MultiTableMixin, SingleTableMixin
 from .models import *
 from .forms import *
 from .tables import *
-from .filters import ProjectFilter, CaseFilter
+from .filters import ProjectFilter, CaseFilter, ClientFilter, OrganizationFilter
 from accounting.forms import NewFundRequestForm
 from archive.models import DocumentMovement
 from archive.tables import DocumentMovementTable
@@ -31,22 +31,10 @@ class Index(TemplateView):
 
 class ProjectListing(BaseLawyerView, SingleTableMixin, FilterView):
     model = Case
-    # table_class = CaseTable
-    # table_pagination = {
-    #     'per_page': 10
-    # }
-    # filterset_class = ProjectFilter
+    table_pagination = {
+        'per_page': 10
+    }
     template_name = 'projects/projects_listing.html'
-
-    def get_table_class(self):
-        p_type = self.kwargs['p_type']
-
-        if p_type.lower() == 'case':
-            return CaseTable
-        elif p_type.lower() == 'paperwork':
-            return ProjectTable
-        else:
-            return ProjectTable
 
     def get_queryset(self):
         p_type = self.kwargs['p_type']
@@ -63,6 +51,21 @@ class ProjectListing(BaseLawyerView, SingleTableMixin, FilterView):
         else:
             employee, s = Employee.objects.get_or_create(user=self.request.user)
             return self.model.objects.filter(main_assignee=employee)
+
+    def get_table_class(self):
+        p_type = self.kwargs['p_type']
+
+        if p_type.lower() == 'case':
+            return CaseTable
+        elif p_type.lower() == 'paperwork':
+            return ProjectTable
+        else:
+            return ProjectTable
+
+    def get_table_kwargs(self):
+        kwargs = super(ProjectListing, self).get_table_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super(ProjectListing, self).get_context_data(**kwargs)
@@ -166,9 +169,11 @@ class UpdateProjectView(SuccessMessageMixin, MultiTableMixin, BaseLawyerView, Ba
     def get_tables(self):
         fund_requests = FundRequest.objects.filter(project=self.get_object())
         docs_movements = DocumentMovement.objects.filter(document__project=self.get_object())
+        invoices = Invoice.objects.filter(project=self.get_object())
         return [
-            FundRequestTable(fund_requests),
-            DocumentMovementTable(docs_movements)
+            FundRequestTable(fund_requests, user=self.request.user),
+            DocumentMovementTable(docs_movements, user=self.request.user),
+            InvoiceTable(invoices, user=self.request.user),
         ]
 
     # TODO: implement case ownership check
@@ -202,3 +207,87 @@ class NewUpdateView(SuccessMessageMixin, BaseLawyerView, BaseFormView, CreateVie
 
     def get_success_url(self):
         return reverse_lazy('update_project', args=(self.kwargs['pk'], ))
+
+
+class ClientListing(BaseLawyerView, SingleTableMixin, FilterView):
+    model = Case
+    table_class = ClientTable
+    table_pagination = {
+        'per_page': 10
+    }
+    filterset_class = ClientFilter
+    template_name = 'projects/clients_listing.html'
+
+    def get_queryset(self):
+        return Client.objects.all()
+
+    # def get_table(self):
+    #     return self.table_class(self.get_queryset() , user=self.request.user)
+
+    def get_table_kwargs(self):
+        kwargs = super(ClientListing, self).get_table_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(ClientListing, self).get_context_data(**kwargs)
+
+        context['search_form'] = BaseCrispySearchForm
+
+        return context
+
+
+class ClientView(SuccessMessageMixin, BaseLawyerView, BaseFormView, UpdateView):
+    model = Client
+    form_class = ClientForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('clients')
+    success_message = _('Client info was updated successfully')
+
+
+class NewClientView(BaseLawyerView, BaseFormView, CreateView):
+    form_class = ClientForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('clients')
+    success_message = _('Client was added successfully')
+
+
+class OrganizationListing(BaseLawyerView, SingleTableMixin, FilterView):
+    model = Organization
+    table_class = OrganizationTable
+    table_pagination = {
+        'per_page': 10
+    }
+    filterset_class = OrganizationFilter
+    template_name = 'projects/organizations_listing.html'
+
+    def get_queryset(self):
+        return Organization.objects.all()
+
+    def get_table_kwargs(self):
+        kwargs = super(OrganizationListing, self).get_table_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(OrganizationListing, self).get_context_data(**kwargs)
+
+        context['search_form'] = BaseCrispySearchForm
+
+        return context
+
+
+class OrganizationView(SuccessMessageMixin, BaseLawyerView, BaseFormView, UpdateView):
+    model = Organization
+    form_class = OrganizationForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('organizations')
+    success_message = _('Organization info was updated successfully')
+
+
+class NewOrganizationView(BaseLawyerView, BaseFormView, CreateView):
+    form_class = OrganizationForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('clients')
+    success_message = _('Organization was added successfully')
+

@@ -136,6 +136,13 @@ class Person(models.Model):
     address = models.TextField(_('Address'), null=True, blank=False)
     active = models.BooleanField(_('Is Active'), blank=False, default=False)
     personal_picture = models.FileField(_('Personal Picture'), null=True, blank=True)
+    created_on = models.DateTimeField(_('Created On'), auto_now_add=True)
+    created_by = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
+                                   verbose_name=_('Created By'),
+                                   related_name="%(app_label)s_created_%(class)s", )
+    updated_on = models.DateTimeField(_('Updated On'), auto_now=True)
+    updated_by = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
+                                   verbose_name=_('Updated By'))
 
     @property
     def name(self):
@@ -184,6 +191,12 @@ class Client(Person):
         else:
             return name
 
+    def get_absolute_url(self):
+        return reverse_lazy('update_client', args=(self.pk,))
+
+    def get_update_url(self):
+        return self.get_absolute_url()
+
 
 class Organization(models.Model):
     name_ar = models.CharField(_('Organization Name'), max_length=100, null=True, blank=False)
@@ -195,6 +208,13 @@ class Organization(models.Model):
     website = models.URLField(_('Website'), null=True, blank=True)
     city = models.CharField(_('City'), max_length=100, null=True, blank=False)
     address = models.TextField(_('Address'), null=True, blank=False)
+    created_on = models.DateTimeField(_('Created On'), auto_now_add=True)
+    created_by = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
+                                   verbose_name=_('Created By'),
+                                   related_name="created_organizations", )
+    updated_on = models.DateTimeField(_('Updated On'), auto_now=True)
+    updated_by = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
+                                   verbose_name=_('Updated By'))
 
     class Meta:
         verbose_name = _('Organization')
@@ -210,6 +230,12 @@ class Organization(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse_lazy('update_organization', args=(self.pk,))
+
+    def get_update_url(self):
+        return self.get_absolute_url()
 
 
 class Court(Organization):

@@ -62,3 +62,22 @@ class NewUpdateForm(BaseUpdatedByForm, forms.ModelForm):
             instance.save()
 
         return instance
+
+
+class ClientForm(BaseUpdatedByForm, forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['organization', 'name_ar', 'name_en', 'mobile', 'home_phone', 'work_phone', 'personal_email',
+                  'government_id', 'gender', 'nationality', 'date_of_birth', 'address', 'active', 'personal_picture', ]
+        help_texts = {
+            'organization': _('Choose from the above list if this client belongs to an organization. If the name of '
+                              'the organization does NOT appear in the list, you need to add it first and '
+                              'come back here')
+        }
+
+
+class OrganizationForm(BaseUpdatedByForm, forms.ModelForm):
+    class Meta:
+        model = Organization
+        fields = '__all__'
+        exclude = ['created_by', 'created_on', 'updated_by', 'updated_on']

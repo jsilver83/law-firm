@@ -5135,5 +5135,19 @@ $(function(){
             format: 'YYYY-MM-DD HH:mm'
         },
         "opens": "center"});
-});
+
+    $('#id_date_range_0, #id_date_range_1').daterangepicker({
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "timePicker": false,
+        "autoApply": true,
+        "autoUpdateInput": true,
+        "timePickerIncrement": 5,
+        locale: {
+            format: 'YYYY-MM-DD'
+        },
+        "opens": "center"});
+
+    $('[data-toggle="popover"]').popover()
+})
 //end of joud addition

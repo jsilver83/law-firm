@@ -1,12 +1,19 @@
 import django_tables2 as tables
+from django.utils import formats
 from django.utils.html import format_html
-
 from django.utils.translation import ugettext_lazy as _
 
+from accounting.models import Transaction
 from .models import *
 
 
+class SummingColumn(tables.Column):
+    def render_footer(self, bound_column, table):
+        return sum(bound_column.accessor.resolve(row) for row in table.data)
+
+
 class BaseTableWithCommands(tables.Table):
+    audit_data = tables.TemplateColumn('{{ html }}', orderable=False, verbose_name='')
     view_link = tables.TemplateColumn('{{ html }}', orderable=False, verbose_name='')
     update_link = tables.TemplateColumn('{{ html }}', orderable=False, verbose_name='')
     delete_link = tables.TemplateColumn('{{ html }}', orderable=False, verbose_name='')
@@ -29,19 +36,41 @@ class BaseTableWithCommands(tables.Table):
                    % (record.get_absolute_url(), _('Delete'))
         return format_html(commands)
 
+    def render_audit_data(self, *args, **kwargs):
+        record = kwargs.pop('record')
+        commands = '<button type="button" ' \
+                   'class="btn btn-secondary" ' \
+                   'data-html="true"  ' \
+                   'data-trigger="focus" ' \
+                   'data-container="body" ' \
+                   'data-toggle="popover" ' \
+                   'data-placement="bottom" ' \
+                   'data-content="<b>%s:<b> %s<br><b>%s:<b> %s<hr><b>%s:<b> %s<br><b>%s:<b> %s">' \
+                   '<i class="fa fa-comment-o"></i> %s' \
+                   '</button>' % (_('Created By'),
+                                  record.created_by,
+                                  _('Created On'),
+                                  formats.date_format(record.created_on, 'DATETIME_FORMAT'),
+                                  _('Updated By'),
+                                  record.updated_by,
+                                  _('Updated On'),
+                                  formats.date_format(record.updated_on, 'DATETIME_FORMAT'),
+                                  _('Audit'))
+        return format_html(commands)
+
     def __init__(self, *args, **kwargs):
         self.employee, d = Employee.objects.get_or_create(user=kwargs.pop('user'))
         super(BaseTableWithCommands, self).__init__(*args, **kwargs)
 
         self.exclude = ()
         if not self.can_view():
-            self.exclude = self.exclude + ('view_link', )
+            self.exclude = self.exclude + ('view_link',)
 
         if not self.can_update():
-            self.exclude = self.exclude + ('update_link', )
+            self.exclude = self.exclude + ('update_link',)
 
         if not self.can_delete():
-            self.exclude = self.exclude + ('delete_link', )
+            self.exclude = self.exclude + ('delete_link',)
 
     def can_view(self):
         return False
@@ -54,7 +83,6 @@ class BaseTableWithCommands(tables.Table):
 
 
 class ProjectTable(BaseTableWithCommands):
-
     class Meta:
         model = Project
         fields = ['title', 'status', 'main_assignee', 'client', ]
@@ -77,8 +105,8 @@ class ProjectTable(BaseTableWithCommands):
             queryset = queryset.order_by(('-' if is_descending else '') + 'title_en')
         return queryset, True
 
-    # def __init__(self, *args, **kwargs):
-    #     super(ProjectTable, self).__init__(*args, **kwargs)
+        # def __init__(self, *args, **kwargs):
+        #     super(ProjectTable, self).__init__(*args, **kwargs)
         # self.columns['title'].orderable = False
 
 
@@ -88,7 +116,6 @@ class CaseTable(ProjectTable):
 
 
 class ReminderTable(tables.Table):
-
     class Meta:
         model = Project
         fields = ['title', 'status', 'main_assignee', 'client', ]
@@ -98,6 +125,7 @@ class ReminderTable(tables.Table):
 
 class ClientTable(BaseTableWithCommands):
     personal_email = tables.EmailColumn()
+
     # organization = tables.RelatedLinkColumn()
 
     class Meta:
@@ -115,7 +143,6 @@ class ClientTable(BaseTableWithCommands):
 
 
 class OrganizationTable(BaseTableWithCommands):
-
     class Meta:
         model = Project
         fields = ['name', 'type', 'phone', 'website', 'city', ]
@@ -128,4 +155,3 @@ class OrganizationTable(BaseTableWithCommands):
         else:
             queryset = queryset.order_by(('-' if is_descending else '') + 'name_en')
         return queryset, True
-

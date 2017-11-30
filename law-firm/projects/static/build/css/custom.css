@@ -1,3 +1,22 @@
+/* added by joud*/
+.object_details{
+    font-size: 115%;
+}
+
+.object_details .col-md-2{
+    font-weight: bold;
+}
+
+.table-container th.asc:after {
+  content: '\0000a0\0025b2';
+}
+.table-container th.desc:after {
+  content: '\0000a0\0025bc';
+}
+.pagination {
+  text-align: center;
+}
+/* end of joud addition */
 
 html , body{
 

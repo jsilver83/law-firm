@@ -5,12 +5,17 @@ from projects.models import *
 
 
 class Document(models.Model):
+    class DocumentStatus:
+        IN_ARCHIVE = _('In Archive')
+        OUT_WITH_EMPLOYEE = _('Out With An Employee')
+        OUT_WITH_CLIENT = _('Out With A Client')
+
     document = models.FileField(_('Document Upload'), null=True, blank=False)
     project = models.ForeignKey('projects.Project', related_name='documents',
                                 on_delete=models.SET_NULL, null=True, blank=True)
     title_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
     title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
-    description = models.TextField(_('Description'), blank=False, null=True)
+    description_ar = models.TextField(_('Description'), blank=False, null=True)
     description_en = models.TextField(_('Description (English)'), blank=False, null=True)
     type = models.CharField(_('Type'), max_length=100, null=True, blank=False,
                             choices=Lookup.get_lookup_choices(Lookup.LookupTypes.DOCUMENT_TYPE))
@@ -38,6 +43,17 @@ class Document(models.Model):
     def __str__(self):
         return self.title
 
+    def get_status(self):
+        receiving_party_role = getattr(self.movements.first(),
+                                       'receiving_party_role',
+                                       DocumentMovement.ArchiveRoles.ARCHIVE)
+        if receiving_party_role == DocumentMovement.ArchiveRoles.ARCHIVE:
+            return Document.DocumentStatus.IN_ARCHIVE
+        elif receiving_party_role == DocumentMovement.ArchiveRoles.CLIENT:
+            return Document.DocumentStatus.OUT_WITH_CLIENT
+        elif receiving_party_role == DocumentMovement.ArchiveRoles.EMPLOYEE:
+            return Document.DocumentStatus.OUT_WITH_EMPLOYEE
+
 
 class DocumentMovement(models.Model):
     class ArchiveRoles:
@@ -53,10 +69,25 @@ class DocumentMovement(models.Model):
                 (cls.EMPLOYEE, _('Employee')),
             )
 
+    class MovementTypes:
+        INBOX = _('Inbox')
+        OUTBOX = _('Outbox')
+        NA = _('N/A')
+
+        @classmethod
+        def choices(cls):
+            return (
+                (cls.INBOX, cls.INBOX),
+                (cls.OUTBOX, cls.OUTBOX),
+                (cls.NA, cls.NA),
+            )
+
     document = models.ForeignKey('Document', related_name='movements',
                                  on_delete=models.CASCADE, null=False, blank=False)
     description = models.CharField(_('Description'), null=True, blank=False, max_length=255)
-    hard_copy = models.BooleanField(_('Hard Copy Received?'), default=False)
+    original_document = models.BooleanField(_('Original Document?'), default=False,
+                                            help_text=_('Are you actually moving the original document or just '
+                                                        'a copy?'))
     handing_party = models.ForeignKey('projects.Person', related_name='handed_documents',
                                       verbose_name=_('Handing Party'),
                                       on_delete=models.SET_NULL, null=True, blank=False)
@@ -72,14 +103,27 @@ class DocumentMovement(models.Model):
     class Meta:
         verbose_name = _('Document Movement')
         verbose_name_plural = _('Document Movements')
+        ordering = ['-movement_date']
 
     def type(self):
         if self.handing_party_role == DocumentMovement.ArchiveRoles.ARCHIVE and self.receiving_party_role in (
                 DocumentMovement.ArchiveRoles.EMPLOYEE, DocumentMovement.ArchiveRoles.CLIENT):
-            return _('Outbox')
+            return DocumentMovement.MovementTypes.OUTBOX
         elif self.receiving_party_role == DocumentMovement.ArchiveRoles.ARCHIVE and self.handing_party_role in (
                 DocumentMovement.ArchiveRoles.EMPLOYEE,
                 DocumentMovement.ArchiveRoles.CLIENT):
-            return _('Inbox')
+            return DocumentMovement.MovementTypes.INBOX
         else:
-            return _('N/A')
+            return DocumentMovement.MovementTypes.NA
+
+    def get_absolute_url(self):
+        return reverse_lazy('archive_listing')
+
+    def get_document_check_in_url(self):
+        return reverse_lazy('new_document_movement', args=(self.document.pk, 'inbox'))
+
+    def get_document_check_out_url(self):
+        return reverse_lazy('new_document_movement', args=(self.document.pk, 'outbox'))
+
+    def get_update_url(self):
+        return self.get_absolute_url()

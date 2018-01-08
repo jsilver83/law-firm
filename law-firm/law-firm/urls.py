@@ -18,9 +18,13 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import login, logout
 
 urlpatterns = i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^login/$', login, name='login'),
+    url(r'^logout/$', logout, {'next_page': 'login'}, name='logout'),
 
     url(r'^projects/', include('projects.urls')),
 

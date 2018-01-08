@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django_tables2',
     'crispy_forms',
     'django_filters',
+    'dal',
+    'dal_select2',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -167,6 +169,9 @@ CURRENCY_CHOICES = [('USD', 'USD $'), ('EUR', 'EUR €'), ('SAR', 'SAR')]
 DEFAULT_CURRENCY_CODE = 'SAR'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/

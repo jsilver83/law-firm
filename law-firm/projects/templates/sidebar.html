@@ -1,10 +1,12 @@
 {% load i18n %}
+{% load staticfiles %}
+
 {% get_current_language as LANGUAGE_CODE %}
 
 <div class="left_col scroll-view">
 	<div class="navbar nav_title" style="border: 0;">
 		<a href="{% url 'index' %}" class="site_title"><i class="fa fa-spinner"></i>
-			{#	    <span>نظام المحاماة</span>#}
+		    <span>{% trans 'Lawyer System' %}</span>
 		</a>
 	</div>
 
@@ -13,11 +15,11 @@
 	<!-- menu profile quick info -->
 	<div class="profile clearfix">
 		<div class="profile_pic">
-			<img src="/static/images/img.jpg" alt="..." class="img-circle profile_img">
+			<img src="{% static user.employee.picture %}" alt="..." class="img-circle profile_img">
 		</div>
 		<div class="profile_info">
-			<span>أهلا وسهلا,</span>
-			<h2>أبو مشاري</h2>
+			<span>{% trans 'Welcome' %}</span>
+			<h2>{{ user.employee.name }}</h2>
 		</div>
 	</div>
 	<!-- /menu profile quick info -->
@@ -27,7 +29,7 @@
 	<!-- sidebar menu -->
 	<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 		<div class="menu_section">
-			<h3>القائمة الرئيسية</h3>
+			<h3>{% trans 'Main Menu' %}</h3>
 			<ul class="nav side-menu">
 				<li><a><i class="fa fa-home"></i> {% trans 'Projects' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
@@ -36,57 +38,51 @@
 						<li><a href="{% url 'case_listing' 'Paperwork' %}">{% trans 'Paperwork Projects' %}</a></li>
 					</ul>
 				</li>
-				<li><a><i class="fa fa-edit"></i> العملاء <span class="fa fa-chevron-down"></span></a>
+				<li><a><i class="fa fa-edit"></i> {% trans 'Clients' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
-						<li><a href="form.html">شركات</a></li>
-						<li><a href="form_advanced.html">أفراد</a></li>
+						<li><a href="{% url 'organizations' %}">{% trans 'Organizations' %}</a></li>
+						<li><a href="{% url 'clients' %}">{% trans 'Individuals' %}</a></li>
 					</ul>
 				</li>
-				<li><a><i class="fa fa-desktop"></i> الأرشيف <span class="fa fa-chevron-down"></span></a>
-					<ul class="nav child_menu">
-						<li><a href="general_elements.html">الصادر</a></li>
-						<li><a href="media_gallery.html">الوارد</a></li>
-						{#            <li><a href="typography.html">Typography</a></li>#}
-						{#            <li><a href="icons.html">Icons</a></li>#}
-						{#            <li><a href="glyphicons.html">Glyphicons</a></li>#}
-						{#            <li><a href="widgets.html">Widgets</a></li>#}
-						{#            <li><a href="invoice.html">Invoice</a></li>#}
-						{#            <li><a href="inbox.html">Inbox</a></li>#}
-						{#            <li><a href="calendar.html">Calendar</a></li>#}
-					</ul>
+				<li><a href="{% url 'archive_listing' %}">
+					<i class="fa fa-desktop"></i> {% trans 'Archive' %}
+				</a>
 				</li>
-				<li><a><i class="fa fa-table"></i> المواعيد <span class="fa fa-chevron-down"></span></a>
+				<li><a><i class="fa fa-bar-chart-o"></i> {% trans 'Accounting' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
-						<li><a href="tables.html">الجلسات</a></li>
-						{#            <li><a href="tables_dynamic.html">Table Dynamic</a></li>#}
-					</ul>
-				</li>
-				<li><a><i class="fa fa-bar-chart-o"></i> المحاسبة <span class="fa fa-chevron-down"></span></a>
-					<ul class="nav child_menu">
-						<li><a href="chartjs.html">الفواتير</a></li>
-						<li><a href="chartjs2.html">سندات القبض</a></li>
-						<li><a href="chartjs2.html">أوامر الصرف</a></li>
+						<li><a href="{% url 'transaction_listing' %}">{% trans 'Transactions' %}</a></li>
+						<li><a href="{% url 'invoice_listing' %}">{% trans 'Invoices' %}</a></li>
+						<li><a href="{% url 'fund_request_listing' %}">{% trans 'Fund Requests' %}</a></li>
+{#						<li><a href="chartjs2.html">سندات القبض</a></li>#}
+{#						<li><a href="{% url '' %}">أوامر الصرف</a></li>#}
 						{#            <li><a href="morisjs.html">Moris JS</a></li>#}
 						{#            <li><a href="echarts.html">ECharts</a></li>#}
 						{#            <li><a href="other_charts.html">Other Charts</a></li>#}
 					</ul>
 				</li>
-				<li><a><i class="fa fa-clone"></i>الموظفين <span class="fa fa-chevron-down"></span></a>
+{#				<li><a><i class="fa fa-table"></i> المواعيد <span class="fa fa-chevron-down"></span></a>#}
+{#					<ul class="nav child_menu">#}
+{#						<li><a href="tables.html">الجلسات</a></li>#}
+{#						            <li><a href="tables_dynamic.html">Table Dynamic</a></li>#}
+{#					</ul>#}
+{#				</li>#}
+				<li><a><i class="fa fa-clone"></i>{% trans 'Employees' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
-						<li><a href="fixed_sidebar.html">المستخدمين</a></li>
-						<li><a href="fixed_footer.html">الرواتب</a></li>
+						<li><a>{% trans 'Users' %}</a></li>
+						<li><a>{% trans 'Salaries' %}</a></li>
 					</ul>
 				</li>
 
 				<li>
 					{% if LANGUAGE_CODE == 'ar' %}
-					<a href="/en{{ request.get_full_path|slice:'3:' }}">
-						<i class="fa fa-language"></i> English</a>
+						<a href="/en{{ request.get_full_path|slice:'3:' }}">
+							<i class="fa fa-language"></i> English</a>
 					{% else %}
-					<a href="/ar{{ request.get_full_path|slice:'3:' }}">
-						<i class="fa fa-language"></i> عربي</a>
+						<a href="/ar{{ request.get_full_path|slice:'3:' }}">
+							<i class="fa fa-language"></i> عربي</a>
 					{% endif %}
 				</li>
+				<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>{% trans 'Logout' %}</a></li>
 			</ul>
 		</div>
 		{#    <div class="menu_section">#}
@@ -145,7 +141,7 @@
 		<a data-toggle="tooltip" data-placement="top" title="Lock">
 			<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 		</a>
-		<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+		<a data-toggle="tooltip" data-placement="top" title="Logout" href="{% url 'logout' %}">
 			<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
 		</a>
 	</div>

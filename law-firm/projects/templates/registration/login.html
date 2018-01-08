@@ -1,0 +1,94 @@
+{% extends "base_site.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Login' %}{% endblock %}
+
+{% block stylesheets %}
+	{{ block.super }}
+	<!-- Animate.css -->
+	<link href="/static/vendors/animate.css/animate.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+	<div>
+		<a class="hiddenanchor" id="signup"></a>
+		<a class="hiddenanchor" id="signin"></a>
+
+		<div class="login_wrapper">
+			<div class="animate form login_form">
+				<section class="login_content">
+					<form method="post">
+						{% csrf_token %}
+						<h1>{% trans 'Login Form' %}</h1>
+						<div>
+							<input type="text" name="username" class="form-control" placeholder="{% trans 'Username' %}" required=""/>
+						</div>
+						<div>
+							<input type="password" name="password" class="form-control" placeholder="{% trans 'Password' %}" required=""/>
+						</div>
+						<div>
+							<input type="submit" class="btn btn-default submit" value="Log in"/>
+							<a class="reset_pass" href="#">{% trans 'Lost your password?' %}</a>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="separator">
+							<p class="change_link">{% trans 'New user?' %}
+								<a href="#signup" class="to_register"> {% trans 'Create Account' %} </a>
+							</p>
+
+							<div class="clearfix"></div>
+							<br/>
+
+							<div>
+								<h1><i class="fa fa-paw"></i> {% trans 'Fahad Habib Lawyer Office' %}</h1>
+								<p>©2018 All Rights Reserved. Privacy and Terms</p>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+
+			<div id="register" class="animate form registration_form">
+				<section class="login_content">
+					<form method="post">
+						{% csrf_token %}
+						<h1>{% trans 'Create Account' %}</h1>
+						<div>
+							<input type="text" class="form-control" placeholder="{% trans 'Username' %}" required=""/>
+						</div>
+						<div>
+							<input type="email" class="form-control" placeholder="{% trans 'Email' %}" required=""/>
+						</div>
+						<div>
+							<input type="password" class="form-control" placeholder="{% trans 'Password' %}" required=""/>
+						</div>
+						<div>
+							<input type="submit" class="btn btn-default submit" value="{% trans 'Submit' %}"/>
+						</div>
+
+						<div class="clearfix"></div>
+
+						<div class="separator">
+							<p class="change_link">{% trans 'Already a member ?' %}
+								<a href="#signin" class="to_register"> {% trans 'Log in' %} </a>
+							</p>
+
+							<div class="clearfix"></div>
+							<br/>
+
+							<div>
+								<h1><i class="fa fa-paw"></i> {% trans 'Fahad Habib Lawyer Office' %}</h1>
+								<p>©2018 All Rights Reserved. Privacy and Terms</p>
+							</div>
+						</div>
+					</form>
+				</section>
+			</div>
+		</div>
+	</div>
+{% endblock body %}
+

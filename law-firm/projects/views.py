@@ -21,6 +21,7 @@ from accounting.tables import *
 
 class BaseLawyerView(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
+        print(self.request.user.groups)
         return self.request.user.groups.filter(name__in=['Admins', 'Lawyers']).exists() \
                or self.request.user.is_superuser
 
@@ -170,10 +171,14 @@ class UpdateProjectView(SuccessMessageMixin, MultiTableMixin, BaseLawyerView, Ba
         fund_requests = FundRequest.objects.filter(project=self.get_object())
         docs_movements = DocumentMovement.objects.filter(document__project=self.get_object())
         invoices = Invoice.objects.filter(project=self.get_object())
+        employee, d = Employee.objects.get_or_create(user=self.request.user)
+        reminders = Reminder.objects.filter(project=self.get_object(),
+                                            whom_to_remind=employee)
         return [
             FundRequestTable(fund_requests, user=self.request.user),
             DocumentMovementTable(docs_movements, user=self.request.user),
             InvoiceTable(invoices, user=self.request.user),
+            ReminderTable(reminders, user=self.request.user, project_page=True),
         ]
 
     # TODO: implement case ownership check
@@ -291,3 +296,16 @@ class NewOrganizationView(BaseLawyerView, BaseFormView, CreateView):
     success_url = reverse_lazy('clients')
     success_message = _('Organization was added successfully')
 
+
+class NewReminderView(SuccessMessageMixin, BaseLawyerView, BaseFormView, CreateView):
+    form_class = NewReminderForm
+    template_name = 'projects/form.html'
+    success_message = _('Reminder was created successfully.')
+
+    def get_form_kwargs(self):
+        kwargs = super(NewReminderView, self).get_form_kwargs()
+        kwargs['project'] = Project.objects.get(pk=self.kwargs['pk'])
+        return kwargs
+
+    def get_success_url(self):
+        return reverse_lazy('update_project', args=(self.kwargs['pk'], ))

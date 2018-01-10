@@ -3,6 +3,7 @@ from django.db import models
 from django.urls import reverse_lazy
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
+from djmoney.models.fields import MoneyField
 
 User = settings.AUTH_USER_MODEL
 
@@ -152,8 +153,9 @@ class Person(models.Model):
         else:
             return self.name_en
 
+    # TODO: FIX STR ERROR
     def __str__(self):
-        return self.name
+        return self.name if self.name else ''
 
     @property
     def picture(self):
@@ -168,7 +170,8 @@ class Employee(Person):
     job_description_en = models.CharField(_('Job Description (English)'), max_length=255, null=True, blank=True)
     joining_date = models.DateTimeField(_('Joining Date'), null=True, blank=False)
     qualifications = models.TextField(_('Qualifications'), null=True, blank=True)
-    monthly_salary = models.FloatField(_('Monthly Salary'), null=True, blank=True)
+    monthly_salary = MoneyField(_('Monthly Salary'), null=True, blank=True,
+                                decimal_places=2, default=0, default_currency='SAR', max_digits=11,)
     user = models.OneToOneField(User, related_name='employee', null=True, blank=True)
 
     class Meta:
@@ -267,19 +270,21 @@ class Project(models.Model):
         #     abstract = True
         verbose_name = _('Project')
         verbose_name_plural = _('Projects')
+        ordering = ('-updated_on', 'created_on', )
 
     title_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
     title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
-    description = models.TextField(_('Description'), blank=False, null=True)
+    description_ar = models.TextField(_('Description'), blank=False, null=True)
     description_en = models.TextField(_('Description (English)'), blank=False, null=True)
     status = models.CharField(_('Status'), max_length=20, null=True, blank=False,
                               choices=Statuses.choices(), default=Statuses.NEW)
     status_comments = models.CharField(_('Status Comments'), max_length=500, null=True, blank=True)
     client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=False,
-                               related_name='%(app_label)s_%(class)s', )
+                               related_name='%(app_label)s_%(class)s', verbose_name=_('Client'))
     fees = models.CharField(max_length=200, blank=False, null=True)
     main_assignee = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
-                                      related_name='assigned_%(app_label)s_%(class)s')
+                                      related_name='assigned_%(app_label)s_%(class)s',
+                                      verbose_name=_('Main Assignee'))
     created_on = models.DateTimeField(_('Created On'), auto_now_add=True)
     created_by = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
                                    verbose_name=_('Created By'),
@@ -295,6 +300,14 @@ class Project(models.Model):
             return self.title_ar
         else:
             return self.title_en
+
+    @property
+    def description(self):
+        lang = translation.get_language()
+        if lang == "ar":
+            return self.description_ar
+        else:
+            return self.description_en
 
     def __str__(self):
         return self.title
@@ -313,11 +326,11 @@ class Case(Project):
     client_role = models.CharField(_('Client Role'), max_length=100, null=True, blank=False,
                                    choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_ROLE))
     opponent = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=False,
-                                 related_name='opposing_cases', )
+                                 related_name='opposing_cases', verbose_name=_('Opponent'))
     opponent_role = models.CharField(_('Opponent Role'), max_length=100, null=True, blank=False,
                                      choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_ROLE))
     court = models.ForeignKey('Court', on_delete=models.SET_NULL, null=True, blank=False,
-                              related_name='opposing_cases', )
+                              related_name='opposing_cases', verbose_name=_('Court'))
     court_office = models.CharField(_('Court Office'), max_length=200, null=True, blank=True)
 
     class Meta:

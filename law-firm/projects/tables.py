@@ -37,26 +37,29 @@ class BaseTableWithCommands(tables.Table):
         return format_html(commands)
 
     def render_audit_data(self, *args, **kwargs):
-        record = kwargs.pop('record')
-        commands = '<button type="button" ' \
-                   'class="btn btn-secondary" ' \
-                   'data-html="true"  ' \
-                   'data-trigger="focus" ' \
-                   'data-container="body" ' \
-                   'data-toggle="popover" ' \
-                   'data-placement="bottom" ' \
-                   'data-content="<b>%s:<b> %s<br><b>%s:<b> %s<hr><b>%s:<b> %s<br><b>%s:<b> %s">' \
-                   '<i class="fa fa-comment-o"></i> %s' \
-                   '</button>' % (_('Created By'),
-                                  record.created_by,
-                                  _('Created On'),
-                                  formats.date_format(record.created_on, 'DATETIME_FORMAT'),
-                                  _('Updated By'),
-                                  record.updated_by,
-                                  _('Updated On'),
-                                  formats.date_format(record.updated_on, 'DATETIME_FORMAT'),
-                                  _('Audit'))
-        return format_html(commands)
+        try:
+            record = kwargs.pop('record')
+            commands = '<button type="button" ' \
+                       'class="btn btn-secondary" ' \
+                       'data-html="true"  ' \
+                       'data-trigger="focus" ' \
+                       'data-container="body" ' \
+                       'data-toggle="popover" ' \
+                       'data-placement="bottom" ' \
+                       'data-content="<b>%s:<b> %s<br><b>%s:<b> %s<hr><b>%s:<b> %s<br><b>%s:<b> %s">' \
+                       '<i class="fa fa-comment-o"></i> %s' \
+                       '</button>' % (_('Created By'),
+                                      record.created_by,
+                                      _('Created On'),
+                                      formats.date_format(record.created_on, 'DATETIME_FORMAT'),
+                                      _('Updated By'),
+                                      record.updated_by,
+                                      _('Updated On'),
+                                      formats.date_format(record.updated_on, 'DATETIME_FORMAT'),
+                                      _('Audit'))
+            return format_html(commands)
+        except AttributeError:
+            return ''
 
     def __init__(self, *args, **kwargs):
         self.employee, d = Employee.objects.get_or_create(user=kwargs.pop('user'))
@@ -72,6 +75,9 @@ class BaseTableWithCommands(tables.Table):
         if not self.can_delete():
             self.exclude = self.exclude + ('delete_link',)
 
+        if not self.can_see_audit_data():
+            self.exclude = self.exclude + ('audit_data',)
+
     def can_view(self):
         return False
 
@@ -80,6 +86,9 @@ class BaseTableWithCommands(tables.Table):
 
     def can_delete(self):
         return False
+
+    def can_see_audit_data(self):
+        return True
 
 
 class ProjectTable(BaseTableWithCommands):
@@ -105,6 +114,9 @@ class ProjectTable(BaseTableWithCommands):
             queryset = queryset.order_by(('-' if is_descending else '') + 'title_en')
         return queryset, True
 
+    def can_view(self):
+        return True
+
         # def __init__(self, *args, **kwargs):
         #     super(ProjectTable, self).__init__(*args, **kwargs)
         # self.columns['title'].orderable = False
@@ -112,15 +124,25 @@ class ProjectTable(BaseTableWithCommands):
 
 class CaseTable(ProjectTable):
     class Meta(ProjectTable.Meta):
-        fields = ProjectTable.Meta.fields + ['client_role', 'type', 'case_reference', 'court', 'updated_on']
+        fields = ProjectTable.Meta.fields + ['client_role', 'type', 'case_reference', 'court']
 
 
-class ReminderTable(tables.Table):
+class ReminderTable(BaseTableWithCommands):
     class Meta:
-        model = Project
-        fields = ['title', 'status', 'main_assignee', 'client', ]
-        exclude = ['id']
+        model = Reminder
+        fields = ['title', 'description', 'whom_to_remind', 'date', 'type', 'project',
+                  'last_seen_on', ]
         attrs = {'class': 'table table-striped table-bordered', }
+
+    def can_see_audit_data(self):
+        return False
+
+    def __init__(self, *args, **kwargs):
+        self.project_page = False
+        self.project_page = kwargs.pop('project_page')
+        super(ReminderTable, self).__init__(*args, **kwargs)
+        if self.project_page:
+            self.exclude += ('project', )
 
 
 class ClientTable(BaseTableWithCommands):

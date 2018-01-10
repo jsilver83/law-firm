@@ -14,8 +14,8 @@ class DocumentMovementTable(BaseTableWithCommands):
 
     class Meta:
         model = DocumentMovement
-        fields = ['document.project', 'document', 'uploaded_document', 'document.type', 'type', 'handing_party',
-                  'receiving_party','movement_date', 'original_document', ]
+        fields = ['pk', 'document.pk', 'document.project', 'document', 'uploaded_document', 'document.type', 'type',
+                  'handing_party', 'receiving_party','movement_date', 'original_document', ]
         attrs = {'class': 'table table-striped table-bordered',
                  'id': 'datatable'}
 

@@ -1,4 +1,5 @@
 import django_filters as filters
+from dal import autocomplete
 from django.db.models import Q
 
 from django.utils.translation import ugettext_lazy as _
@@ -18,6 +19,10 @@ class ProjectFilter(filters.FilterSet):
 
     def custom_title_filter(self, queryset, name, value):
         return queryset.filter(Q(title_ar__icontains=value) | Q(title_en__icontains=value))
+
+    def __init__(self, *args, **kwargs):
+        super(ProjectFilter, self).__init__(*args, **kwargs)
+        self.filters['client'].widget = autocomplete.ModelSelect2(url='client-autocomplete', )
 
 
 class CaseFilter(ProjectFilter):

@@ -12,7 +12,7 @@ class Document(models.Model):
 
     document = models.FileField(_('Document Upload'), null=True, blank=False)
     project = models.ForeignKey('projects.Project', related_name='documents',
-                                on_delete=models.SET_NULL, null=True, blank=True)
+                                on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Project'))
     title_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
     title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
     description_ar = models.TextField(_('Description'), blank=False, null=True)
@@ -39,6 +39,17 @@ class Document(models.Model):
             return self.title_ar
         else:
             return self.title_en
+
+    @property
+    def description(self):
+        lang = translation.get_language()
+        if lang == "ar":
+            return self.description_ar
+        else:
+            return self.description_en
+
+    title.fget.short_description = _('Title')
+    title.fget.short_description = _('Description')
 
     def __str__(self):
         return self.title
@@ -83,7 +94,7 @@ class DocumentMovement(models.Model):
             )
 
     document = models.ForeignKey('Document', related_name='movements',
-                                 on_delete=models.CASCADE, null=False, blank=False)
+                                 on_delete=models.CASCADE, null=False, blank=False, verbose_name=_('Document'))
     description = models.CharField(_('Description'), null=True, blank=False, max_length=255)
     original_document = models.BooleanField(_('Original Document?'), default=False,
                                             help_text=_('Are you actually moving the original document or just '

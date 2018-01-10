@@ -15,6 +15,7 @@ law-firm/db.sqlite3
 law-firm/uploads
 law-firm/law_firm/local_settings.py
 law-firm/law_firm/settings/local.py
+law-firm/static
 
 *.pyc
 *.mo

@@ -26,7 +26,7 @@ class BaseLawyerView(LoginRequiredMixin, UserPassesTestMixin):
                or self.request.user.is_superuser
 
 
-class Index(TemplateView):
+class Index(LoginRequiredMixin, TemplateView):
     template_name = 'projects/index.html'
 
 

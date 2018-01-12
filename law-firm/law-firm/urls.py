@@ -23,7 +23,7 @@ from django.contrib.auth.views import login, logout
 urlpatterns = i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^login/$', login, name='login'),
+    url(r'^', login, name='login'),
     url(r'^logout/$', logout, {'next_page': 'login'}, name='logout'),
 
     url(r'^projects/', include('projects.urls')),
@@ -33,5 +33,7 @@ urlpatterns = i18n_patterns(
     url(r'^accounting/', include('accounting.urls')),
 
     url(r'^app/', include('app.urls')),
-    url(r'^', include('app.urls')),
+    url(r'^temp/$', include('app.urls')),
+
+    url(r'^autocomplete/', include('autocomplete_light.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

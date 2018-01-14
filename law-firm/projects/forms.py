@@ -31,6 +31,12 @@ class CaseForm(ProjectForm):
 
     def __init__(self, *args, **kwargs):
         super(CaseForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.CASE_TYPE))
+        self.fields['client_role'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_ROLE))
+        self.fields['opponent_role'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_ROLE))
 
 
 class PaperworkForm(ProjectForm):
@@ -43,6 +49,8 @@ class PaperworkForm(ProjectForm):
 
     def __init__(self, *args, **kwargs):
         super(PaperworkForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.PAPERWORK_TYPE))
 
 
 class ConsultationForm(ProjectForm):
@@ -55,6 +63,8 @@ class ConsultationForm(ProjectForm):
 
     def __init__(self, *args, **kwargs):
         super(ConsultationForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.CONSULTATION_TYPE))
 
 
 class NewUpdateForm(BaseUpdatedByForm, forms.ModelForm):
@@ -99,6 +109,11 @@ class OrganizationForm(BaseUpdatedByForm, forms.ModelForm):
         model = Organization
         fields = '__all__'
         exclude = ['created_by', 'created_on', 'updated_by', 'updated_on']
+
+    def __init__(self, *args, **kwargs):
+        super(OrganizationForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.ORGANIZATION_TYPE))
 
 
 class NewReminderForm(BaseUpdatedByForm, forms.ModelForm):

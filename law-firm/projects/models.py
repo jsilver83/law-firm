@@ -204,8 +204,7 @@ class Client(Person):
 class Organization(models.Model):
     name_ar = models.CharField(_('Organization Name'), max_length=100, null=True, blank=False)
     name_en = models.CharField(_('Organization Name (English)'), max_length=100, null=True, blank=False)
-    type = models.CharField(_('Type'), max_length=100, null=True, blank=False,
-                            choices=Lookup.get_lookup_choices(Lookup.LookupTypes.ORGANIZATION_TYPE))
+    type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
     phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     fax = models.CharField(_('Fax'), max_length=20, null=True, blank=True)
     website = models.URLField(_('Website'), null=True, blank=True)
@@ -321,14 +320,11 @@ class Project(models.Model):
 
 class Case(Project):
     case_reference = models.CharField(_('Case Reference'), max_length=100, null=True, blank=False)
-    type = models.CharField(_('Type'), max_length=100, null=True, blank=False,
-                            choices=Lookup.get_lookup_choices(Lookup.LookupTypes.CASE_TYPE))
-    client_role = models.CharField(_('Client Role'), max_length=100, null=True, blank=False,
-                                   choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_ROLE))
+    type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
+    client_role = models.CharField(_('Client Role'), max_length=100, null=True, blank=False)
     opponent = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=False,
                                  related_name='opposing_cases', verbose_name=_('Opponent'))
-    opponent_role = models.CharField(_('Opponent Role'), max_length=100, null=True, blank=False,
-                                     choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_ROLE))
+    opponent_role = models.CharField(_('Opponent Role'), max_length=100, null=True, blank=False)
     court = models.ForeignKey('Court', on_delete=models.SET_NULL, null=True, blank=False,
                               related_name='opposing_cases', verbose_name=_('Court'))
     court_office = models.CharField(_('Court Office'), max_length=200, null=True, blank=True)
@@ -339,8 +335,7 @@ class Case(Project):
 
 
 class Consultation(Project):
-    type = models.CharField(_('Type'), max_length=100, null=True, blank=False,
-                            choices=Lookup.get_lookup_choices(Lookup.LookupTypes.CONSULTATION_TYPE))
+    type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
 
     class Meta:
         verbose_name = _('Consultation')
@@ -348,8 +343,7 @@ class Consultation(Project):
 
 
 class Paperwork(Project):
-    type = models.CharField(_('Type'), max_length=100, null=True, blank=False,
-                            choices=Lookup.get_lookup_choices(Lookup.LookupTypes.PAPERWORK_TYPE))
+    type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
 
     class Meta:
         verbose_name = _('Paperwork')

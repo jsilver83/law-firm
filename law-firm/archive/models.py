@@ -17,8 +17,7 @@ class Document(models.Model):
     title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
     description_ar = models.TextField(_('Description'), blank=False, null=True)
     description_en = models.TextField(_('Description (English)'), blank=False, null=True)
-    type = models.CharField(_('Type'), max_length=100, null=True, blank=False,
-                            choices=Lookup.get_lookup_choices(Lookup.LookupTypes.DOCUMENT_TYPE))
+    type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
     uploaded_on = models.DateTimeField(_('Uploaded On'), auto_now_add=True)
     uploaded_by = models.ForeignKey('projects.Employee', on_delete=models.SET_NULL, null=True, blank=False,
                                     related_name='uploaded_documents',

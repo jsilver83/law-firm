@@ -34,6 +34,4 @@ urlpatterns = i18n_patterns(
 
     url(r'^app/', include('app.urls')),
     url(r'^temp/', include('app.urls')),
-
-    # url(r'^autocomplete/', include('autocomplete_light.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

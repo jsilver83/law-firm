@@ -36,3 +36,5 @@ whichcraft==0.4.1
 xlrd==1.1.0
 xlwt==1.3.0
 django-autocomplete-light==3.2.10
+django-addanother==2.0.0
+

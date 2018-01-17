@@ -27,6 +27,10 @@ urlpatterns = [
     url(r'^new-user/$', views.NewUserView.as_view(), name='new-user'),
     url(r'^user/(?P<pk>\d+)/$', views.ChangeUserView.as_view(), name='change-user'),
 
+    url(r'^lookups/$', views.LookupListing.as_view(), name='lookups'),
+    url(r'^new-lookup/$', views.NewLookupView.as_view(), name='new-lookup'),
+    url(r'^lookup/(?P<pk>\d+)/$', views.UpdateLookupView.as_view(), name='update-lookup'),
+
     url(r'^client-autocomplete/$', auto_complete_views.ClientAutocomplete.as_view(), name='client-autocomplete', ),
     url(r'^org-autocomplete/$', auto_complete_views.OrganizationAutocomplete.as_view(), name='org-autocomplete', ),
     url(r'^court-autocomplete/$', auto_complete_views.CourtAutocomplete.as_view(), name='court-autocomplete', ),

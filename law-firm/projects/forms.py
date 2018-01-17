@@ -170,3 +170,13 @@ class MyUserChangeForm(BaseCrispyForm, UserChangeForm):
     def __init__(self, *args, **kwargs):
         super(MyUserChangeForm, self).__init__(*args, **kwargs)
         self.helper.add_input(Submit('submit', _('Submit')))
+
+
+class LookupForm(BaseCrispyForm, forms.ModelForm):
+    class Meta:
+        model = Lookup
+        fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(LookupForm, self).__init__(*args, **kwargs)
+        self.helper.add_input(Submit('submit', _('Submit')))

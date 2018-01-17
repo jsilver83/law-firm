@@ -89,6 +89,12 @@ class Lookup(models.Model):
     def __str__(self):
         return self.lookup_value
 
+    def get_absolute_url(self):
+        return reverse_lazy('update-lookup', args=(self.pk,))
+
+    def get_update_url(self):
+        return self.get_absolute_url()
+
     @staticmethod
     def get_lookup_choices(lookup_type, add_dashes=True):
         try:

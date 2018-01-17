@@ -196,3 +196,21 @@ class EmployeeTable(BaseTableWithCommands):
 
     def can_update(self):
         return True
+
+
+class LookupTable(BaseTableWithCommands):
+    class Meta:
+        model = Lookup
+        fields = ['lookup_type', 'lookup_value', 'show', 'display_order']
+        attrs = {'class': 'table table-striped table-bordered', }
+
+    def order_lookup_value(self, queryset, is_descending):
+        lang = translation.get_language()
+        if lang == "ar":
+            queryset = queryset.order_by(('-' if is_descending else '') + 'lookup_value_ar')
+        else:
+            queryset = queryset.order_by(('-' if is_descending else '') + 'lookup_value_en')
+        return queryset, True
+
+    def can_update(self):
+        return True

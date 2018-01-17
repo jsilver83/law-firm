@@ -87,3 +87,17 @@ class EmployeeFilter(filters.FilterSet):
 
     def custom_job_filter(self, queryset, name, value):
         return queryset.filter(Q(job_description_ar__icontains=value) | Q(job_description_en__icontains=value))
+
+
+class LookupFilter(filters.FilterSet):
+    general_search = filters.CharFilter(method='custom_value_filter', label=_('Lookup Value'))
+
+    class Meta:
+        model = Lookup
+        fields = {
+            'lookup_type': ['exact'],
+            'show': ['exact'],
+        }
+
+    def custom_value_filter(self, queryset, name, value):
+        return queryset.filter(Q(lookup_value_ar__icontains=value) | Q(lookup_value_en__icontains=value))

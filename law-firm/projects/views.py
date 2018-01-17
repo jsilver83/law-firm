@@ -14,7 +14,7 @@ from django_tables2 import SingleTableView, MultiTableMixin, SingleTableMixin
 from .models import *
 from .forms import *
 from .tables import *
-from .filters import ProjectFilter, CaseFilter, ClientFilter, OrganizationFilter, EmployeeFilter
+from .filters import ProjectFilter, CaseFilter, ClientFilter, OrganizationFilter, EmployeeFilter, LookupFilter
 from accounting.forms import NewFundRequestForm
 from archive.models import DocumentMovement
 from archive.tables import DocumentMovementTable
@@ -25,6 +25,13 @@ class BaseLawyerView(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
         print(self.request.user.groups)
         return self.request.user.groups.filter(name__in=['Admins', 'Lawyers']).exists() \
+               or self.request.user.is_superuser
+
+
+class BaseAdminView(LoginRequiredMixin, UserPassesTestMixin):
+    def test_func(self):
+        print(self.request.user.groups)
+        return self.request.user.groups.filter(name__in=['Admins']).exists() \
                or self.request.user.is_superuser
 
 
@@ -348,14 +355,14 @@ class EmployeesListing(BaseLawyerView, BaseListingView, SingleTableMixin, Filter
     template_name = 'projects/employees_listing.html'
 
 
-class NewEmployeeView(SuccessMessageMixin, BaseLawyerView, BaseFormView, CreateView):
+class NewEmployeeView(SuccessMessageMixin, BaseAdminView, BaseFormView, CreateView):
     form_class = NewEmployeeForm
     template_name = 'projects/form.html'
     success_message = _('Employee was created successfully.')
     success_url = reverse_lazy('employees')
 
 
-class EmployeeView(SuccessMessageMixin, BaseLawyerView, BaseFormView, UpdateView):
+class EmployeeView(SuccessMessageMixin, BaseAdminView, BaseFormView, UpdateView):
     model = Employee
     form_class = NewEmployeeForm
     template_name = 'projects/form.html'
@@ -371,3 +378,29 @@ class NewUserView(CreatePopupMixin, CreateView):
 class ChangeUserView(UpdatePopupMixin, CreateView):
     form_class = MyUserChangeForm
     template_name = 'projects/plain-form.html'
+
+
+class LookupListing(BaseAdminView, BaseListingView, SingleTableMixin, FilterView):
+    model = Lookup
+    table_class = LookupTable
+    table_pagination = {
+        'per_page': 10
+    }
+    filterset_class = LookupFilter
+    template_name = 'projects/lookups_listing.html'
+
+
+class NewLookupView(SuccessMessageMixin, BaseAdminView, CreateView):
+    model = Lookup
+    form_class = LookupForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('lookups')
+    success_message = _('Lookup was added successfully')
+
+
+class UpdateLookupView(SuccessMessageMixin, BaseAdminView, UpdateView):
+    model = Lookup
+    form_class = LookupForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('lookups')
+    success_message = _('Lookup was updated successfully')

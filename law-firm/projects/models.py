@@ -178,6 +178,21 @@ class Employee(Person):
         verbose_name = _('Employee')
         verbose_name_plural = _('Employees')
 
+    @property
+    def job_description(self):
+        lang = translation.get_language()
+        if lang == "ar":
+            return self.job_description_ar
+        else:
+            return self.job_description_en
+
+    def get_absolute_url(self):
+        return reverse_lazy('update_employee', args=(self.pk,))
+
+    def get_update_url(self):
+        return self.get_absolute_url()
+
+
 
 class Client(Person):
     organization = models.ForeignKey('Organization', related_name='contact_persons',

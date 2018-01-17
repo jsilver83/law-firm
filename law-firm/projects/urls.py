@@ -21,6 +21,11 @@ urlpatterns = [
     url(r'^organization/$', views.NewOrganizationView.as_view(), name='new_organization'),
     url(r'^organization/(?P<pk>\d+)/$', views.OrganizationView.as_view(), name='update_organization'),
 
+    url(r'^employees/$', views.EmployeesListing.as_view(), name='employees'),
+    url(r'^employee/$', views.NewEmployeeView.as_view(), name='new_employee'),
+    url(r'^employee/(?P<pk>\d+)/$', views.EmployeeView.as_view(), name='update_employee'),
+    url(r'^new-user/$', views.NewUserView.as_view(), name='new-user'),
+    url(r'^user/(?P<pk>\d+)/$', views.ChangeUserView.as_view(), name='change-user'),
 
     url(r'^client-autocomplete/$', auto_complete_views.ClientAutocomplete.as_view(), name='client-autocomplete', ),
     url(r'^org-autocomplete/$', auto_complete_views.OrganizationAutocomplete.as_view(), name='org-autocomplete', ),

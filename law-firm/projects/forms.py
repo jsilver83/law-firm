@@ -1,10 +1,13 @@
 from crispy_forms.layout import Submit, Layout, ButtonHolder, Fieldset
 from django import forms
 from crispy_forms.helper import FormHelper
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.models import User as OriginalUser
 from django.utils import timezone
 from dal import autocomplete
 
 from django.utils.translation import ugettext_lazy as _
+from django_addanother.widgets import AddAnotherWidgetWrapper
 
 from .models import *
 from.base_forms import *
@@ -134,3 +137,36 @@ class NewReminderForm(BaseUpdatedByForm, forms.ModelForm):
             instance.save()
 
         return instance
+
+
+class NewEmployeeForm(BaseUpdatedByForm, forms.ModelForm):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+        exclude = ['updated_on', 'updated_by', 'created_on', 'created_by']
+        widgets = {
+            'user': AddAnotherWidgetWrapper(
+                forms.Select,
+                reverse_lazy('new-user'),
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(NewEmployeeForm, self).__init__(*args, **kwargs)
+
+
+class MyUserCreationForm(BaseCrispyForm, UserCreationForm):
+    class Meta:
+        model = OriginalUser
+        fields = ['username', 'password1', 'password2', 'email', 'groups']
+
+    def __init__(self, *args, **kwargs):
+        super(MyUserCreationForm, self).__init__(*args, **kwargs)
+        self.helper.add_input(Submit('submit', _('Submit')))
+
+
+class MyUserChangeForm(BaseCrispyForm, UserChangeForm):
+
+    def __init__(self, *args, **kwargs):
+        super(MyUserChangeForm, self).__init__(*args, **kwargs)
+        self.helper.add_input(Submit('submit', _('Submit')))

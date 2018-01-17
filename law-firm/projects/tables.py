@@ -177,3 +177,22 @@ class OrganizationTable(BaseTableWithCommands):
         else:
             queryset = queryset.order_by(('-' if is_descending else '') + 'name_en')
         return queryset, True
+
+
+class EmployeeTable(BaseTableWithCommands):
+    class Meta:
+        model = Employee
+        fields = ['name', 'job_description', 'mobile', 'user.email', 'user.is_active',
+                  'monthly_salary', ]
+        attrs = {'class': 'table table-striped table-bordered', }
+
+    def order_name(self, queryset, is_descending):
+        lang = translation.get_language()
+        if lang == "ar":
+            queryset = queryset.order_by(('-' if is_descending else '') + 'name_ar')
+        else:
+            queryset = queryset.order_by(('-' if is_descending else '') + 'name_en')
+        return queryset, True
+
+    def can_update(self):
+        return True

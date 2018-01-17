@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,13 +7,14 @@ from django.urls import reverse_lazy, reverse
 from django.utils.html import format_html
 from django.views.generic import TemplateView, UpdateView, CreateView, FormView
 from django.utils.translation import ugettext_lazy as _
+from django_addanother.views import CreatePopupMixin, UpdatePopupMixin
 from django_filters.views import FilterView
 from django_tables2 import SingleTableView, MultiTableMixin, SingleTableMixin
 
 from .models import *
 from .forms import *
 from .tables import *
-from .filters import ProjectFilter, CaseFilter, ClientFilter, OrganizationFilter
+from .filters import ProjectFilter, CaseFilter, ClientFilter, OrganizationFilter, EmployeeFilter
 from accounting.forms import NewFundRequestForm
 from archive.models import DocumentMovement
 from archive.tables import DocumentMovementTable
@@ -28,6 +30,31 @@ class BaseLawyerView(LoginRequiredMixin, UserPassesTestMixin):
 
 class Index(LoginRequiredMixin, TemplateView):
     template_name = 'projects/index.html'
+
+
+class BaseListingView(SingleTableMixin, FilterView):
+    model = None
+    table_class = None
+    table_pagination = {
+        'per_page': 10
+    }
+    filterset_class = None
+    template_name = ''
+
+    def get_queryset(self):
+        return self.model.objects.all()
+
+    def get_table_kwargs(self):
+        kwargs = super(BaseListingView, self).get_table_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(BaseListingView, self).get_context_data(**kwargs)
+
+        context['search_form'] = BaseCrispySearchForm
+
+        return context
 
 
 class ProjectListing(BaseLawyerView, SingleTableMixin, FilterView):
@@ -309,3 +336,38 @@ class NewReminderView(SuccessMessageMixin, BaseLawyerView, BaseFormView, CreateV
 
     def get_success_url(self):
         return reverse_lazy('update_project', args=(self.kwargs['pk'], ))
+
+
+class EmployeesListing(BaseLawyerView, BaseListingView, SingleTableMixin, FilterView):
+    model = Employee
+    table_class = EmployeeTable
+    table_pagination = {
+        'per_page': 10
+    }
+    filterset_class = EmployeeFilter
+    template_name = 'projects/employees_listing.html'
+
+
+class NewEmployeeView(SuccessMessageMixin, BaseLawyerView, BaseFormView, CreateView):
+    form_class = NewEmployeeForm
+    template_name = 'projects/form.html'
+    success_message = _('Employee was created successfully.')
+    success_url = reverse_lazy('employees')
+
+
+class EmployeeView(SuccessMessageMixin, BaseLawyerView, BaseFormView, UpdateView):
+    model = Employee
+    form_class = NewEmployeeForm
+    template_name = 'projects/form.html'
+    success_url = reverse_lazy('employees')
+    success_message = _('Employee info was updated successfully')
+
+
+class NewUserView(CreatePopupMixin, CreateView):
+    form_class = MyUserCreationForm
+    template_name = 'projects/plain-form.html'
+
+
+class ChangeUserView(UpdatePopupMixin, CreateView):
+    form_class = MyUserChangeForm
+    template_name = 'projects/plain-form.html'

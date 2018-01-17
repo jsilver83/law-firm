@@ -16,6 +16,15 @@
 .pagination {
   text-align: center;
 }
+
+.related-widget-wrapper .select{
+    width: 80%!important;
+    display: inline-block!important;
+}
+
+/*.related-widget-wrapper a{*/
+    /*float: left!important;*/
+/*}*/
 /* end of joud addition */
 
 html , body{

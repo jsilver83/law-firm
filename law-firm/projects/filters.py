@@ -69,3 +69,21 @@ class OrganizationFilter(filters.FilterSet):
 
     def custom_name_filter(self, queryset, name, value):
         return queryset.filter(Q(name_ar__icontains=value) | Q(name_en__icontains=value))
+
+
+class EmployeeFilter(filters.FilterSet):
+    general_search = filters.CharFilter(method='custom_name_filter', label=_('Name (Arabic or English)'))
+    job_description = filters.CharFilter(method='custom_job_filter', label=_('Job Description'))
+
+    class Meta:
+        model = Employee
+        fields = {
+            'mobile': ['icontains'],
+            'nationality': ['exact'],
+        }
+
+    def custom_name_filter(self, queryset, name, value):
+        return queryset.filter(Q(name_ar__icontains=value) | Q(name_en__icontains=value))
+
+    def custom_job_filter(self, queryset, name, value):
+        return queryset.filter(Q(job_description_ar__icontains=value) | Q(job_description_en__icontains=value))

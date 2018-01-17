@@ -66,12 +66,21 @@
 {#						            <li><a href="tables_dynamic.html">Table Dynamic</a></li>#}
 {#					</ul>#}
 {#				</li>#}
-				<li><a><i class="fa fa-clone"></i>{% trans 'Employees' %} <span class="fa fa-chevron-down"></span></a>
-					<ul class="nav child_menu">
-						<li><a>{% trans 'Users' %}</a></li>
-						<li><a>{% trans 'Salaries' %}</a></li>
-					</ul>
+				<li>
+					<a href="{% url 'employees' %}">
+						<i class="fa fa-user"></i>{% trans 'Employees' %}
+					</a>
 				</li>
+				<li>
+					<a href="{% url 'lookups' %}">
+						<i class="fa fa-clone"></i>{% trans 'Lookups Listing' %}
+					</a>
+				</li>
+{#					<ul class="nav child_menu">#}
+{#						<li><a>{% trans 'Users' %}</a></li>#}
+{#						<li><a>{% trans 'Salaries' %}</a></li>#}
+{#					</ul>#}
+{#				</li>#}
 
 				<li>
 					{% if LANGUAGE_CODE == 'ar' %}

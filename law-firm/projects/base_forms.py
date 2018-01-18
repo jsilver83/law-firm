@@ -13,8 +13,8 @@ class BaseCrispyForm:
         super(BaseCrispyForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_class = 'form-horizontal form-label-left'
-        self.helper.label_class = 'col-lg-3'
-        self.helper.field_class = 'col-lg-7'
+        self.helper.label_class = 'col-lg-3 col-md-4 col-xs-5'
+        self.helper.field_class = 'col-lg-7 col-md-8 col-xs-7'
 
 
 class BaseCrispySearchForm(BaseCrispyForm):

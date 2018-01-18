@@ -17,7 +17,7 @@
   text-align: center;
 }
 
-.related-widget-wrapper .select{
+.related-widget-wrapper .select, .select2-container{
     width: 80%!important;
     display: inline-block!important;
 }

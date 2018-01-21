@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-17 21:49+0000\n"
+"POT-Creation-Date: 2018-01-21 09:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Abdullah Joud <abd.jod2004@gmail.com>\n"
 "Language-Team: ICTC \n"
@@ -27,14 +27,15 @@ msgid "Search in Name Or Description"
 msgstr ""
 
 #: accounting/filters.py:52 accounting/models.py:110 accounting/tables.py:105
-#: archive/forms.py:11 archive/models.py:15 projects/models.py:291
+#: archive/forms.py:11 archive/models.py:15 projects/models.py:294
+#: projects/models.py:430
 #: projects/templates/accounting/approve_fund_request.html:10
 #: projects/templates/accounting/new_expense.html:10
 #: projects/templates/accounting/new_payment.html:17
 msgid "Project"
 msgstr ""
 
-#: accounting/models.py:18 accounting/models.py:91 projects/models.py:282
+#: accounting/models.py:18 accounting/models.py:91 projects/models.py:285
 msgid "New"
 msgstr ""
 
@@ -102,28 +103,28 @@ msgid "Approval Date"
 msgstr ""
 
 #: accounting/models.py:43 accounting/models.py:111 accounting/models.py:201
-#: projects/models.py:146 projects/models.py:234 projects/models.py:308
-#: projects/models.py:439 projects/tables.py:53
+#: projects/models.py:148 projects/models.py:237 projects/models.py:311
+#: projects/models.py:442 projects/tables.py:53
 #: projects/templates/snippets/audit.html:8
 msgid "Created On"
 msgstr ""
 
 #: accounting/models.py:45 accounting/models.py:113 accounting/models.py:203
-#: projects/models.py:148 projects/models.py:236 projects/models.py:310
+#: projects/models.py:150 projects/models.py:239 projects/models.py:313
 #: projects/tables.py:51 projects/templates/snippets/audit.html:14
 msgid "Created By"
 msgstr ""
 
 #: accounting/models.py:47 accounting/models.py:115 accounting/models.py:205
-#: archive/models.py:25 archive/tables.py:71 projects/models.py:150
-#: projects/models.py:238 projects/models.py:312 projects/tables.py:57
+#: archive/models.py:25 archive/tables.py:71 projects/models.py:152
+#: projects/models.py:241 projects/models.py:315 projects/tables.py:57
 #: projects/templates/snippets/audit.html:23
 msgid "Updated On"
 msgstr ""
 
 #: accounting/models.py:49 accounting/models.py:117 accounting/models.py:207
-#: archive/models.py:28 archive/tables.py:69 projects/models.py:152
-#: projects/models.py:240 projects/models.py:314 projects/tables.py:55
+#: archive/models.py:28 archive/tables.py:69 projects/models.py:154
+#: projects/models.py:243 projects/models.py:317 projects/tables.py:55
 #: projects/templates/snippets/audit.html:29
 msgid "Updated By"
 msgstr ""
@@ -133,7 +134,7 @@ msgid "Fund Request"
 msgstr ""
 
 #: accounting/models.py:53 projects/templates/projects/update-project.html:163
-#: projects/templates/sidebar.html:55
+#: projects/templates/sidebar.html:56
 msgid "Fund Requests"
 msgstr ""
 
@@ -141,7 +142,7 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
-#: accounting/models.py:94 projects/models.py:286
+#: accounting/models.py:94 projects/models.py:289
 msgid "Cancelled"
 msgstr ""
 
@@ -150,28 +151,28 @@ msgid "Invoice Reference"
 msgstr ""
 
 #: accounting/models.py:98 accounting/models.py:180 archive/forms.py:12
-#: archive/models.py:16 archive/models.py:50 projects/models.py:295
-#: projects/models.py:393 projects/models.py:428
+#: archive/models.py:16 archive/models.py:50 projects/models.py:298
+#: projects/models.py:396 projects/models.py:431
 #: projects/templates/accounting/new_payment.html:12
 msgid "Title"
 msgstr ""
 
 #: accounting/models.py:99 accounting/models.py:181 archive/forms.py:14
-#: archive/models.py:17 projects/models.py:296 projects/models.py:394
-#: projects/models.py:429 projects/templates/accounting/new_payment.html:14
+#: archive/models.py:17 projects/models.py:299 projects/models.py:397
+#: projects/models.py:432 projects/templates/accounting/new_payment.html:14
 msgid "Title (English)"
 msgstr ""
 
 #: accounting/models.py:100 accounting/models.py:184 archive/forms.py:15
 #: archive/models.py:18 archive/models.py:51 archive/models.py:97
-#: projects/models.py:297 projects/models.py:395 projects/models.py:430
+#: projects/models.py:300 projects/models.py:398 projects/models.py:433
 #: projects/templates/accounting/new_payment.html:22
 msgid "Description"
 msgstr ""
 
 #: accounting/models.py:101 accounting/models.py:185 archive/forms.py:16
-#: archive/models.py:19 projects/models.py:298 projects/models.py:396
-#: projects/models.py:431 projects/templates/accounting/new_payment.html:24
+#: archive/models.py:19 projects/models.py:301 projects/models.py:399
+#: projects/models.py:434 projects/templates/accounting/new_payment.html:24
 msgid "Description (English)"
 msgstr ""
 
@@ -179,13 +180,13 @@ msgstr ""
 msgid "Invoice Date"
 msgstr ""
 
-#: accounting/models.py:105 projects/models.py:299
+#: accounting/models.py:105 projects/models.py:302
 #: projects/templates/accounting/new_payment.html:26
 msgid "Status"
 msgstr ""
 
 #: accounting/models.py:108 accounting/models.py:162 archive/models.py:77
-#: projects/models.py:208 projects/models.py:303
+#: projects/models.py:211 projects/models.py:306
 #: projects/templates/accounting/new_payment.html:20
 msgid "Client"
 msgstr ""
@@ -194,11 +195,11 @@ msgstr ""
 msgid "Invoice"
 msgstr ""
 
-#: accounting/models.py:121 projects/templates/sidebar.html:54
+#: accounting/models.py:121 projects/templates/sidebar.html:55
 msgid "Invoices"
 msgstr ""
 
-#: accounting/models.py:164 archive/models.py:79 projects/models.py:184
+#: accounting/models.py:164 archive/models.py:79 projects/models.py:187
 msgid "Employee"
 msgstr ""
 
@@ -206,7 +207,7 @@ msgstr ""
 msgid "Expenses"
 msgstr ""
 
-#: accounting/models.py:169 projects/templates/sidebar.html:72
+#: accounting/models.py:169
 msgid "Salaries"
 msgstr ""
 
@@ -258,7 +259,7 @@ msgstr ""
 msgid "Transaction"
 msgstr ""
 
-#: accounting/models.py:211 projects/templates/sidebar.html:53
+#: accounting/models.py:211 projects/templates/sidebar.html:54
 msgid "Transactions"
 msgstr ""
 
@@ -303,8 +304,8 @@ msgid "INBOX"
 msgstr ""
 
 #: archive/filters.py:16 archive/forms.py:17 archive/models.py:20
-#: projects/models.py:228 projects/models.py:344 projects/models.py:359
-#: projects/models.py:367 projects/models.py:402
+#: projects/models.py:231 projects/models.py:347 projects/models.py:362
+#: projects/models.py:370 projects/models.py:405
 msgid "Type"
 msgstr ""
 
@@ -324,7 +325,7 @@ msgstr ""
 msgid "Movement Description"
 msgstr ""
 
-#: archive/forms.py:26 projects/models.py:65
+#: archive/forms.py:26 projects/models.py:66
 msgid "Document Type"
 msgstr ""
 
@@ -428,7 +429,7 @@ msgstr ""
 msgid "Administration"
 msgstr ""
 
-#: projects/apps.py:7 projects/models.py:292
+#: projects/apps.py:7 projects/models.py:295
 #: projects/templates/sidebar.html:34
 msgid "Projects"
 msgstr ""
@@ -437,43 +438,52 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: projects/base_forms.py:34 projects/forms.py:165 projects/forms.py:172
-#: projects/forms.py:182
+#: projects/base_forms.py:34 projects/forms.py:213 projects/forms.py:219
+#: projects/forms.py:229
 msgid "Submit"
 msgstr ""
 
-#: projects/filters.py:11
+#: projects/filters.py:12
 msgid "Title (Arabic or English)"
 msgstr ""
 
-#: projects/filters.py:39 projects/models.py:343
+#: projects/filters.py:41 projects/models.py:346
 msgid "Case Reference"
 msgstr ""
 
-#: projects/filters.py:43 projects/filters.py:60 projects/filters.py:75
+#: projects/filters.py:74 projects/filters.py:91 projects/filters.py:106
+#: projects/filters.py:124
 msgid "Name (Arabic or English)"
 msgstr ""
 
-#: projects/filters.py:56 projects/templates/sidebar.html:44
+#: projects/filters.py:87 projects/templates/sidebar.html:44
 msgid "Individuals"
 msgstr ""
 
-#: projects/filters.py:76 projects/models.py:175
+#: projects/filters.py:107 projects/filters.py:125 projects/models.py:177
 msgid "Job Description"
 msgstr ""
 
-#: projects/filters.py:93
+#: projects/filters.py:145
 msgid "Lookup Value"
 msgstr ""
 
-#: projects/forms.py:100
+#: projects/forms.py:120
 msgid ""
 "Choose from the above list if this client belongs to an organization. If the "
 "name of the organization does NOT appear in the list, you need to add it "
 "first and come back here"
 msgstr ""
 
-#: projects/models.py:12 projects/models.py:14 projects/models.py:15
+#: projects/forms.py:152
+msgid "Court Name (Arabic)"
+msgstr ""
+
+#: projects/forms.py:153
+msgid "Court Name (English)"
+msgstr ""
+
+#: projects/models.py:12
 msgid "Nationality (Arabic)"
 msgstr ""
 
@@ -481,15 +491,23 @@ msgstr ""
 msgid "Nationality (English)"
 msgstr ""
 
-#: projects/models.py:16 projects/models.py:73
+#: projects/models.py:14
+msgid "Country (Arabic)"
+msgstr ""
+
+#: projects/models.py:15
+msgid "Country (English)"
+msgstr ""
+
+#: projects/models.py:16 projects/models.py:75
 msgid "Show"
 msgstr ""
 
-#: projects/models.py:17 projects/models.py:74
+#: projects/models.py:17 projects/models.py:76
 msgid "Display Order"
 msgstr ""
 
-#: projects/models.py:45
+#: projects/models.py:45 projects/models.py:143
 msgid "Nationality"
 msgstr ""
 
@@ -497,278 +515,294 @@ msgstr ""
 msgid "Nationalities"
 msgstr ""
 
-#: projects/models.py:61
+#: projects/models.py:62
 msgid "Organization Type"
 msgstr ""
 
-#: projects/models.py:62
+#: projects/models.py:63
 msgid "Case Type"
 msgstr ""
 
-#: projects/models.py:63
+#: projects/models.py:64
 msgid "Consultation Type"
 msgstr ""
 
-#: projects/models.py:64
+#: projects/models.py:65
 msgid "Paperwork Type"
 msgstr ""
 
-#: projects/models.py:66
+#: projects/models.py:67
+msgid "Court Type"
+msgstr ""
+
+#: projects/models.py:68
 msgid "Court Role"
 msgstr ""
 
-#: projects/models.py:77
+#: projects/models.py:72
+msgid "Lookup Type"
+msgstr ""
+
+#: projects/models.py:79
 msgid "Look up"
 msgstr ""
 
-#: projects/models.py:78
+#: projects/models.py:80
 msgid "Look ups"
 msgstr ""
 
-#: projects/models.py:122
+#: projects/models.py:124
 msgid "Male"
 msgstr ""
 
-#: projects/models.py:123
+#: projects/models.py:125
 msgid "Female"
 msgstr ""
 
-#: projects/models.py:128
+#: projects/models.py:130
 msgid "Person"
 msgstr ""
 
-#: projects/models.py:129
+#: projects/models.py:131
 msgid "Persons"
 msgstr ""
 
-#: projects/models.py:131
+#: projects/models.py:133
 msgid "Full Name"
 msgstr ""
 
-#: projects/models.py:132
+#: projects/models.py:134
 msgid "Full Name (English)"
 msgstr ""
 
-#: projects/models.py:133
+#: projects/models.py:135
 msgid "Mobile"
 msgstr ""
 
-#: projects/models.py:134
+#: projects/models.py:136
 msgid "Home Phone"
 msgstr ""
 
-#: projects/models.py:135
+#: projects/models.py:137
 msgid "Work Phone"
 msgstr ""
 
-#: projects/models.py:136
+#: projects/models.py:138
 msgid "Personal Email"
 msgstr ""
 
-#: projects/models.py:137
+#: projects/models.py:139
 msgid "Government ID"
 msgstr ""
 
-#: projects/models.py:138
+#: projects/models.py:140
 msgid "Gender"
 msgstr ""
 
-#: projects/models.py:142
+#: projects/models.py:144
 msgid "Date Of Birth"
 msgstr ""
 
-#: projects/models.py:143 projects/models.py:233
+#: projects/models.py:145 projects/models.py:236
 msgid "Address"
 msgstr ""
 
-#: projects/models.py:144
+#: projects/models.py:146
 msgid "Is Active"
 msgstr ""
 
-#: projects/models.py:145
+#: projects/models.py:147
 msgid "Personal Picture"
 msgstr ""
 
-#: projects/models.py:176
+#: projects/models.py:178
 msgid "Job Description (English)"
 msgstr ""
 
-#: projects/models.py:177
+#: projects/models.py:179
 msgid "Joining Date"
 msgstr ""
 
-#: projects/models.py:178
+#: projects/models.py:180
 msgid "Qualifications"
 msgstr ""
 
-#: projects/models.py:179
+#: projects/models.py:181
 msgid "Monthly Salary"
 msgstr ""
 
-#: projects/models.py:185 projects/templates/sidebar.html:69
+#: projects/models.py:183
+msgid "Associated User"
+msgstr ""
+
+#: projects/models.py:184
+msgid "The user associated with this employee holds the credentials data."
+msgstr ""
+
+#: projects/models.py:188 projects/templates/sidebar.html:61
 msgid "Employees"
 msgstr ""
 
-#: projects/models.py:209 projects/templates/sidebar.html:41
-msgid "Clients"
-msgstr ""
-
-#: projects/models.py:226
-msgid "Organization Name"
-msgstr ""
-
-#: projects/models.py:227
-msgid "Organization Name (English)"
-msgstr ""
-
-#: projects/models.py:229
-msgid "Phone"
-msgstr ""
-
-#: projects/models.py:230
-msgid "Fax"
-msgstr ""
-
-#: projects/models.py:231
-msgid "Website"
-msgstr ""
-
-#: projects/models.py:232
-msgid "City"
-msgstr ""
-
-#: projects/models.py:243
+#: projects/models.py:208 projects/models.py:246
 msgid "Organization"
 msgstr ""
 
-#: projects/models.py:244 projects/templates/sidebar.html:43
+#: projects/models.py:212 projects/templates/sidebar.html:41
+msgid "Clients"
+msgstr ""
+
+#: projects/models.py:229
+msgid "Organization Name"
+msgstr ""
+
+#: projects/models.py:230
+msgid "Organization Name (English)"
+msgstr ""
+
+#: projects/models.py:232
+msgid "Phone"
+msgstr ""
+
+#: projects/models.py:233
+msgid "Fax"
+msgstr ""
+
+#: projects/models.py:234
+msgid "Website"
+msgstr ""
+
+#: projects/models.py:235
+msgid "City"
+msgstr ""
+
+#: projects/models.py:247 projects/templates/sidebar.html:43
 msgid "Organizations"
 msgstr ""
 
-#: projects/models.py:266 projects/models.py:350
+#: projects/models.py:269 projects/models.py:353
 msgid "Court"
 msgstr ""
 
-#: projects/models.py:267
+#: projects/models.py:270
 msgid "Courts"
 msgstr ""
 
-#: projects/models.py:283
+#: projects/models.py:286
 msgid "In Progress"
 msgstr ""
 
-#: projects/models.py:284
+#: projects/models.py:287
 msgid "Finished"
 msgstr ""
 
-#: projects/models.py:285
+#: projects/models.py:288
 msgid "Delayed"
 msgstr ""
 
-#: projects/models.py:301
+#: projects/models.py:304
 msgid "Status Comments"
 msgstr ""
 
-#: projects/models.py:307
+#: projects/models.py:310
 msgid "Main Assignee"
 msgstr ""
 
-#: projects/models.py:345
+#: projects/models.py:348
 msgid "Client Role"
 msgstr ""
 
-#: projects/models.py:347
+#: projects/models.py:350
 msgid "Opponent"
 msgstr ""
 
-#: projects/models.py:348
+#: projects/models.py:351
 msgid "Opponent Role"
 msgstr ""
 
-#: projects/models.py:351
+#: projects/models.py:354
 msgid "Court Office"
 msgstr ""
 
-#: projects/models.py:354
+#: projects/models.py:357
 msgid "Case"
 msgstr ""
 
-#: projects/models.py:355 projects/templates/sidebar.html:36
-#: projects/views.py:113
+#: projects/models.py:358 projects/templates/sidebar.html:36
+#: projects/views.py:99
 msgid "Cases"
 msgstr ""
 
-#: projects/models.py:362
+#: projects/models.py:365
 msgid "Consultation"
 msgstr ""
 
-#: projects/models.py:363 projects/templates/sidebar.html:37
-#: projects/views.py:119
+#: projects/models.py:366 projects/templates/sidebar.html:37
+#: projects/views.py:105
 msgid "Consultations"
 msgstr ""
 
-#: projects/models.py:370
+#: projects/models.py:373
 msgid "Paperwork"
 msgstr ""
 
-#: projects/models.py:371 projects/templates/sidebar.html:38
-#: projects/views.py:116
+#: projects/models.py:374 projects/templates/sidebar.html:38
+#: projects/views.py:102
 msgid "Paperwork Projects"
 msgstr ""
 
-#: projects/models.py:383
+#: projects/models.py:386
 msgid "SMS"
 msgstr ""
 
-#: projects/models.py:384
+#: projects/models.py:387
 msgid "Email"
 msgstr ""
 
-#: projects/models.py:385
+#: projects/models.py:388
 msgid "Both"
 msgstr ""
 
-#: projects/models.py:389
+#: projects/models.py:392
 msgid "Reminder"
 msgstr ""
 
-#: projects/models.py:390 projects/templates/projects/update-project.html:114
+#: projects/models.py:393 projects/templates/projects/update-project.html:114
 msgid "Reminders"
 msgstr ""
 
-#: projects/models.py:399
+#: projects/models.py:402
 msgid "Whom To Remind"
 msgstr ""
 
-#: projects/models.py:401
+#: projects/models.py:404
 msgid "Reminder Date"
 msgstr ""
 
-#: projects/models.py:406
+#: projects/models.py:409
 msgid "Last Seen On"
 msgstr ""
 
-#: projects/models.py:422
+#: projects/models.py:425
 msgid "Update"
 msgstr ""
 
-#: projects/models.py:423 projects/templates/projects/update-project.html:53
+#: projects/models.py:426 projects/templates/projects/update-project.html:53
 msgid "Updates"
 msgstr ""
 
-#: projects/models.py:432
+#: projects/models.py:435
 msgid "Update Date"
 msgstr ""
 
-#: projects/models.py:433
+#: projects/models.py:436
 msgid "Attachments"
 msgstr ""
 
-#: projects/models.py:434
+#: projects/models.py:437
 msgid "Inform The Client"
 msgstr ""
 
-#: projects/models.py:437
+#: projects/models.py:440
 msgid "Creator"
 msgstr ""
 
@@ -776,7 +810,7 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: projects/tables.py:30
+#: projects/tables.py:30 projects/tables.py:191
 msgid "Edit"
 msgstr ""
 
@@ -847,6 +881,7 @@ msgid "New Client"
 msgstr ""
 
 #: projects/templates/projects/employees_listing.html:4
+#: projects/templates/sidebar.html:64
 msgid "Employees Listing"
 msgstr ""
 
@@ -859,6 +894,7 @@ msgid "New Employee"
 msgstr ""
 
 #: projects/templates/projects/lookups_listing.html:4
+#: projects/templates/sidebar.html:70
 msgid "Lookups Listing"
 msgstr ""
 
@@ -911,6 +947,18 @@ msgstr ""
 msgid "Request Funds"
 msgstr ""
 
+#: projects/templates/projects/users_listing.html:4
+msgid "Users Listing"
+msgstr ""
+
+#: projects/templates/projects/users_listing.html:5
+msgid "All Users"
+msgstr ""
+
+#: projects/templates/projects/users_listing.html:8
+msgid "New User"
+msgstr ""
+
 #: projects/templates/registration/login.html:5
 msgid "Login"
 msgstr ""
@@ -943,11 +991,11 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: projects/templates/sidebar.html:71
+#: projects/templates/sidebar.html:65
 msgid "Users"
 msgstr ""
 
-#: projects/templates/sidebar.html:85
+#: projects/templates/sidebar.html:82
 #: projects/templates/top_navigation.html:23
 msgid "Logout"
 msgstr ""
@@ -960,67 +1008,75 @@ msgstr ""
 msgid "User Profile"
 msgstr ""
 
-#: projects/views.py:114
+#: projects/views.py:100
 msgid "New Case"
 msgstr ""
 
-#: projects/views.py:117
+#: projects/views.py:103
 msgid "New Paperwork Project"
 msgstr ""
 
-#: projects/views.py:120
+#: projects/views.py:106
 msgid "New Consultation"
 msgstr ""
 
-#: projects/views.py:149
+#: projects/views.py:133
 msgid "Project was created successfully"
 msgstr ""
 
-#: projects/views.py:172
+#: projects/views.py:155
 msgid "Project was updated successfully"
 msgstr ""
 
-#: projects/views.py:226
+#: projects/views.py:209
 msgid ""
 "Fund request was submitted successfully. Check later for approval status"
 msgstr ""
 
-#: projects/views.py:240
+#: projects/views.py:223
 msgid "Update was submitted successfully."
 msgstr ""
 
-#: projects/views.py:284
+#: projects/views.py:246
 msgid "Client info was updated successfully"
 msgstr ""
 
-#: projects/views.py:291
+#: projects/views.py:253
 msgid "Client was added successfully"
 msgstr ""
 
-#: projects/views.py:324
+#: projects/views.py:268
 msgid "Organization info was updated successfully"
 msgstr ""
 
-#: projects/views.py:331
+#: projects/views.py:275
 msgid "Organization was added successfully"
 msgstr ""
 
-#: projects/views.py:337
+#: projects/views.py:281
 msgid "Reminder was created successfully."
 msgstr ""
 
-#: projects/views.py:361
+#: projects/views.py:302
 msgid "Employee was created successfully."
 msgstr ""
 
-#: projects/views.py:370
+#: projects/views.py:311
 msgid "Employee info was updated successfully"
 msgstr ""
 
-#: projects/views.py:398
+#: projects/views.py:326
 msgid "Lookup was added successfully"
 msgstr ""
 
-#: projects/views.py:406
+#: projects/views.py:334
 msgid "Lookup was updated successfully"
+msgstr ""
+
+#: projects/views.py:349
+msgid "User was added successfully"
+msgstr ""
+
+#: projects/views.py:357
+msgid "User was updated successfully"
 msgstr ""

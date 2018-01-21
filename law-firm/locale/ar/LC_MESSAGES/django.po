@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-17 21:49+0000\n"
-"PO-Revision-Date: 2018-01-18 00:51+0300\n"
+"POT-Creation-Date: 2018-01-21 09:05+0000\n"
+"PO-Revision-Date: 2018-01-21 12:07+0300\n"
 "Last-Translator: Abdullah Joud <abd.jod2004@gmail.com>\n"
 "Language-Team: ICTC\n"
 "Language: ar\n"
@@ -29,14 +29,15 @@ msgid "Search in Name Or Description"
 msgstr "البحث باﻻسم أو الوصف"
 
 #: accounting/filters.py:52 accounting/models.py:110 accounting/tables.py:105
-#: archive/forms.py:11 archive/models.py:15 projects/models.py:291
+#: archive/forms.py:11 archive/models.py:15 projects/models.py:294
+#: projects/models.py:430
 #: projects/templates/accounting/approve_fund_request.html:10
 #: projects/templates/accounting/new_expense.html:10
 #: projects/templates/accounting/new_payment.html:17
 msgid "Project"
 msgstr "مشروع"
 
-#: accounting/models.py:18 accounting/models.py:91 projects/models.py:282
+#: accounting/models.py:18 accounting/models.py:91 projects/models.py:285
 msgid "New"
 msgstr "جديد"
 
@@ -104,28 +105,28 @@ msgid "Approval Date"
 msgstr "تاريخ اﻻعتماد"
 
 #: accounting/models.py:43 accounting/models.py:111 accounting/models.py:201
-#: projects/models.py:146 projects/models.py:234 projects/models.py:308
-#: projects/models.py:439 projects/tables.py:53
+#: projects/models.py:148 projects/models.py:237 projects/models.py:311
+#: projects/models.py:442 projects/tables.py:53
 #: projects/templates/snippets/audit.html:8
 msgid "Created On"
 msgstr "تم إنشائه في"
 
 #: accounting/models.py:45 accounting/models.py:113 accounting/models.py:203
-#: projects/models.py:148 projects/models.py:236 projects/models.py:310
+#: projects/models.py:150 projects/models.py:239 projects/models.py:313
 #: projects/tables.py:51 projects/templates/snippets/audit.html:14
 msgid "Created By"
 msgstr "أنشأت بواسطة"
 
 #: accounting/models.py:47 accounting/models.py:115 accounting/models.py:205
-#: archive/models.py:25 archive/tables.py:71 projects/models.py:150
-#: projects/models.py:238 projects/models.py:312 projects/tables.py:57
+#: archive/models.py:25 archive/tables.py:71 projects/models.py:152
+#: projects/models.py:241 projects/models.py:315 projects/tables.py:57
 #: projects/templates/snippets/audit.html:23
 msgid "Updated On"
 msgstr "تم التحديث في"
 
 #: accounting/models.py:49 accounting/models.py:117 accounting/models.py:207
-#: archive/models.py:28 archive/tables.py:69 projects/models.py:152
-#: projects/models.py:240 projects/models.py:314 projects/tables.py:55
+#: archive/models.py:28 archive/tables.py:69 projects/models.py:154
+#: projects/models.py:243 projects/models.py:317 projects/tables.py:55
 #: projects/templates/snippets/audit.html:29
 msgid "Updated By"
 msgstr "حدثت بواسطة"
@@ -135,7 +136,7 @@ msgid "Fund Request"
 msgstr "طلبات التمويل"
 
 #: accounting/models.py:53 projects/templates/projects/update-project.html:163
-#: projects/templates/sidebar.html:55
+#: projects/templates/sidebar.html:56
 msgid "Fund Requests"
 msgstr "طلبات التمويل"
 
@@ -143,37 +144,37 @@ msgstr "طلبات التمويل"
 msgid "Pending"
 msgstr "معلق"
 
-#: accounting/models.py:94 projects/models.py:286
+#: accounting/models.py:94 projects/models.py:289
 msgid "Cancelled"
 msgstr "ملغى"
 
 #: accounting/models.py:97 projects/templates/accounting/new_payment.html:10
 msgid "Invoice Reference"
-msgstr "مرجع الفاتورة"
+msgstr "رقم الفاتورة"
 
 #: accounting/models.py:98 accounting/models.py:180 archive/forms.py:12
-#: archive/models.py:16 archive/models.py:50 projects/models.py:295
-#: projects/models.py:393 projects/models.py:428
+#: archive/models.py:16 archive/models.py:50 projects/models.py:298
+#: projects/models.py:396 projects/models.py:431
 #: projects/templates/accounting/new_payment.html:12
 msgid "Title"
 msgstr "العنوان"
 
 #: accounting/models.py:99 accounting/models.py:181 archive/forms.py:14
-#: archive/models.py:17 projects/models.py:296 projects/models.py:394
-#: projects/models.py:429 projects/templates/accounting/new_payment.html:14
+#: archive/models.py:17 projects/models.py:299 projects/models.py:397
+#: projects/models.py:432 projects/templates/accounting/new_payment.html:14
 msgid "Title (English)"
 msgstr "العنوان (الإنجليزية)"
 
 #: accounting/models.py:100 accounting/models.py:184 archive/forms.py:15
 #: archive/models.py:18 archive/models.py:51 archive/models.py:97
-#: projects/models.py:297 projects/models.py:395 projects/models.py:430
+#: projects/models.py:300 projects/models.py:398 projects/models.py:433
 #: projects/templates/accounting/new_payment.html:22
 msgid "Description"
 msgstr "وصف"
 
 #: accounting/models.py:101 accounting/models.py:185 archive/forms.py:16
-#: archive/models.py:19 projects/models.py:298 projects/models.py:396
-#: projects/models.py:431 projects/templates/accounting/new_payment.html:24
+#: archive/models.py:19 projects/models.py:301 projects/models.py:399
+#: projects/models.py:434 projects/templates/accounting/new_payment.html:24
 msgid "Description (English)"
 msgstr "الوصف (الإنجليزية)"
 
@@ -181,13 +182,13 @@ msgstr "الوصف (الإنجليزية)"
 msgid "Invoice Date"
 msgstr "تاريخ الفاتورة"
 
-#: accounting/models.py:105 projects/models.py:299
+#: accounting/models.py:105 projects/models.py:302
 #: projects/templates/accounting/new_payment.html:26
 msgid "Status"
 msgstr "الحالة"
 
 #: accounting/models.py:108 accounting/models.py:162 archive/models.py:77
-#: projects/models.py:208 projects/models.py:303
+#: projects/models.py:211 projects/models.py:306
 #: projects/templates/accounting/new_payment.html:20
 msgid "Client"
 msgstr "العميل"
@@ -196,11 +197,11 @@ msgstr "العميل"
 msgid "Invoice"
 msgstr "الفاتورة"
 
-#: accounting/models.py:121 projects/templates/sidebar.html:54
+#: accounting/models.py:121 projects/templates/sidebar.html:55
 msgid "Invoices"
 msgstr "الفواتير"
 
-#: accounting/models.py:164 archive/models.py:79 projects/models.py:184
+#: accounting/models.py:164 archive/models.py:79 projects/models.py:187
 msgid "Employee"
 msgstr "الموظف"
 
@@ -208,7 +209,7 @@ msgstr "الموظف"
 msgid "Expenses"
 msgstr "مصاريف"
 
-#: accounting/models.py:169 projects/templates/sidebar.html:72
+#: accounting/models.py:169
 msgid "Salaries"
 msgstr "الرواتب"
 
@@ -260,7 +261,7 @@ msgstr "تاريخ العملية"
 msgid "Transaction"
 msgstr "عملية مالية"
 
-#: accounting/models.py:211 projects/templates/sidebar.html:53
+#: accounting/models.py:211 projects/templates/sidebar.html:54
 msgid "Transactions"
 msgstr "العمليات المالية"
 
@@ -305,8 +306,8 @@ msgid "INBOX"
 msgstr ""
 
 #: archive/filters.py:16 archive/forms.py:17 archive/models.py:20
-#: projects/models.py:228 projects/models.py:344 projects/models.py:359
-#: projects/models.py:367 projects/models.py:402
+#: projects/models.py:231 projects/models.py:347 projects/models.py:362
+#: projects/models.py:370 projects/models.py:405
 msgid "Type"
 msgstr "النوع"
 
@@ -326,7 +327,7 @@ msgstr "وصف المستند"
 msgid "Movement Description"
 msgstr "وصف الحركة"
 
-#: archive/forms.py:26 projects/models.py:65
+#: archive/forms.py:26 projects/models.py:66
 msgid "Document Type"
 msgstr "نوع الوثيقة"
 
@@ -430,7 +431,7 @@ msgstr "إدارة النظام"
 msgid "Administration"
 msgstr "الإدارة"
 
-#: projects/apps.py:7 projects/models.py:292
+#: projects/apps.py:7 projects/models.py:295
 #: projects/templates/sidebar.html:34
 msgid "Projects"
 msgstr "مشاريع"
@@ -439,43 +440,52 @@ msgstr "مشاريع"
 msgid "Search"
 msgstr "بحث"
 
-#: projects/base_forms.py:34 projects/forms.py:165 projects/forms.py:172
-#: projects/forms.py:182
+#: projects/base_forms.py:34 projects/forms.py:213 projects/forms.py:219
+#: projects/forms.py:229
 msgid "Submit"
 msgstr "حفظ"
 
-#: projects/filters.py:11
+#: projects/filters.py:12
 msgid "Title (Arabic or English)"
 msgstr "العنوان (بالعربي أو بالإنجليزية)"
 
-#: projects/filters.py:39 projects/models.py:343
+#: projects/filters.py:41 projects/models.py:346
 msgid "Case Reference"
-msgstr "مرجع الحالة"
+msgstr "رقم القضية"
 
-#: projects/filters.py:43 projects/filters.py:60 projects/filters.py:75
+#: projects/filters.py:74 projects/filters.py:91 projects/filters.py:106
+#: projects/filters.py:124
 msgid "Name (Arabic or English)"
 msgstr "الاسم الكامل (بالعربي أو بالإنجليزية)"
 
-#: projects/filters.py:56 projects/templates/sidebar.html:44
+#: projects/filters.py:87 projects/templates/sidebar.html:44
 msgid "Individuals"
 msgstr "أفراد"
 
-#: projects/filters.py:76 projects/models.py:175
+#: projects/filters.py:107 projects/filters.py:125 projects/models.py:177
 msgid "Job Description"
 msgstr "وصف الوظيفة"
 
-#: projects/filters.py:93
+#: projects/filters.py:145
 msgid "Lookup Value"
-msgstr "تصنيف النوع"
+msgstr "وصف النوع"
 
-#: projects/forms.py:100
+#: projects/forms.py:120
 msgid ""
 "Choose from the above list if this client belongs to an organization. If the "
 "name of the organization does NOT appear in the list, you need to add it "
 "first and come back here"
 msgstr "اختر من القائمة أعلاه إذا كان هذا العميل ينتمي إلى جهة أو شركة"
 
-#: projects/models.py:12 projects/models.py:14 projects/models.py:15
+#: projects/forms.py:152
+msgid "Court Name (Arabic)"
+msgstr "اسم المحكمة (العربية)"
+
+#: projects/forms.py:153
+msgid "Court Name (English)"
+msgstr "اسم المحكمة (بالإنجليزية)"
+
+#: projects/models.py:12
 msgid "Nationality (Arabic)"
 msgstr "الجنسية (العربية)"
 
@@ -483,15 +493,23 @@ msgstr "الجنسية (العربية)"
 msgid "Nationality (English)"
 msgstr "الجنسية (الإنجليزية)"
 
-#: projects/models.py:16 projects/models.py:73
+#: projects/models.py:14
+msgid "Country (Arabic)"
+msgstr "الدولة (العربية)"
+
+#: projects/models.py:15
+msgid "Country (English)"
+msgstr "الدولة (الإنجليزية)"
+
+#: projects/models.py:16 projects/models.py:75
 msgid "Show"
 msgstr "إظهار"
 
-#: projects/models.py:17 projects/models.py:74
+#: projects/models.py:17 projects/models.py:76
 msgid "Display Order"
 msgstr "عرض الطلب"
 
-#: projects/models.py:45
+#: projects/models.py:45 projects/models.py:143
 msgid "Nationality"
 msgstr "الجنسية"
 
@@ -499,278 +517,294 @@ msgstr "الجنسية"
 msgid "Nationalities"
 msgstr "الجنسيات"
 
-#: projects/models.py:61
+#: projects/models.py:62
 msgid "Organization Type"
 msgstr "نوع المنشأة"
 
-#: projects/models.py:62
+#: projects/models.py:63
 msgid "Case Type"
 msgstr "نوع القضيه"
 
-#: projects/models.py:63
+#: projects/models.py:64
 msgid "Consultation Type"
 msgstr "نوع الاستشارة"
 
-#: projects/models.py:64
+#: projects/models.py:65
 msgid "Paperwork Type"
 msgstr "نوع التعقيب"
 
-#: projects/models.py:66
+#: projects/models.py:67
+msgid "Court Type"
+msgstr "نوع المحكمة"
+
+#: projects/models.py:68
 msgid "Court Role"
 msgstr "دور المحكمة"
 
-#: projects/models.py:77
+#: projects/models.py:72
+msgid "Lookup Type"
+msgstr "تصنيف النوع"
+
+#: projects/models.py:79
 msgid "Look up"
 msgstr "اﻷنواع"
 
-#: projects/models.py:78
+#: projects/models.py:80
 msgid "Look ups"
 msgstr "التطلعات"
 
-#: projects/models.py:122
+#: projects/models.py:124
 msgid "Male"
 msgstr "ذكر "
 
-#: projects/models.py:123
+#: projects/models.py:125
 msgid "Female"
 msgstr "إناثا"
 
-#: projects/models.py:128
+#: projects/models.py:130
 msgid "Person"
 msgstr "الشخص"
 
-#: projects/models.py:129
+#: projects/models.py:131
 msgid "Persons"
 msgstr "الأشخاص"
 
-#: projects/models.py:131
+#: projects/models.py:133
 msgid "Full Name"
 msgstr "الاسم الكامل"
 
-#: projects/models.py:132
+#: projects/models.py:134
 msgid "Full Name (English)"
 msgstr "الاسم الكامل (بالإنجليزية)"
 
-#: projects/models.py:133
+#: projects/models.py:135
 msgid "Mobile"
 msgstr "الموبايل"
 
-#: projects/models.py:134
+#: projects/models.py:136
 msgid "Home Phone"
 msgstr "هاتف المنزل"
 
-#: projects/models.py:135
+#: projects/models.py:137
 msgid "Work Phone"
 msgstr "هاتف عمل"
 
-#: projects/models.py:136
+#: projects/models.py:138
 msgid "Personal Email"
 msgstr "البريد الإلكتروني الشخصي"
 
-#: projects/models.py:137
+#: projects/models.py:139
 msgid "Government ID"
 msgstr "معرف الحكومة"
 
-#: projects/models.py:138
+#: projects/models.py:140
 msgid "Gender"
 msgstr "جنس"
 
-#: projects/models.py:142
+#: projects/models.py:144
 msgid "Date Of Birth"
 msgstr "تاريخ الميلاد"
 
-#: projects/models.py:143 projects/models.py:233
+#: projects/models.py:145 projects/models.py:236
 msgid "Address"
 msgstr "عنوان"
 
-#: projects/models.py:144
+#: projects/models.py:146
 msgid "Is Active"
 msgstr "... نشيطة."
 
-#: projects/models.py:145
+#: projects/models.py:147
 msgid "Personal Picture"
 msgstr "الصورة الشخصية"
 
-#: projects/models.py:176
+#: projects/models.py:178
 msgid "Job Description (English)"
 msgstr "الوصف الوظيفي (الإنجليزية)"
 
-#: projects/models.py:177
+#: projects/models.py:179
 msgid "Joining Date"
 msgstr "تاريخ الانضمام"
 
-#: projects/models.py:178
+#: projects/models.py:180
 msgid "Qualifications"
 msgstr "مؤهلات"
 
-#: projects/models.py:179
+#: projects/models.py:181
 msgid "Monthly Salary"
 msgstr "راتب شهري"
 
-#: projects/models.py:185 projects/templates/sidebar.html:69
+#: projects/models.py:183
+msgid "Associated User"
+msgstr "المستخدم"
+
+#: projects/models.py:184
+msgid "The user associated with this employee holds the credentials data."
+msgstr "معلومات المستخدم تتضمن كلمة المرور وصلاحيات الموظف."
+
+#: projects/models.py:188 projects/templates/sidebar.html:61
 msgid "Employees"
 msgstr "الموظفين"
 
-#: projects/models.py:209 projects/templates/sidebar.html:41
-msgid "Clients"
-msgstr "العملاء"
-
-#: projects/models.py:226
-msgid "Organization Name"
-msgstr "إسم المنظمة"
-
-#: projects/models.py:227
-msgid "Organization Name (English)"
-msgstr "اسم المؤسسة (بالإنجليزية)"
-
-#: projects/models.py:229
-msgid "Phone"
-msgstr "هاتف"
-
-#: projects/models.py:230
-msgid "Fax"
-msgstr "فاكس"
-
-#: projects/models.py:231
-msgid "Website"
-msgstr "موقع "
-
-#: projects/models.py:232
-msgid "City"
-msgstr "المدينة"
-
-#: projects/models.py:243
+#: projects/models.py:208 projects/models.py:246
 msgid "Organization"
 msgstr "المنشأة"
 
-#: projects/models.py:244 projects/templates/sidebar.html:43
+#: projects/models.py:212 projects/templates/sidebar.html:41
+msgid "Clients"
+msgstr "العملاء"
+
+#: projects/models.py:229
+msgid "Organization Name"
+msgstr "إسم المنشأة"
+
+#: projects/models.py:230
+msgid "Organization Name (English)"
+msgstr "اسم المنشأة (بالإنجليزية)"
+
+#: projects/models.py:232
+msgid "Phone"
+msgstr "هاتف"
+
+#: projects/models.py:233
+msgid "Fax"
+msgstr "فاكس"
+
+#: projects/models.py:234
+msgid "Website"
+msgstr "موقع "
+
+#: projects/models.py:235
+msgid "City"
+msgstr "المدينة"
+
+#: projects/models.py:247 projects/templates/sidebar.html:43
 msgid "Organizations"
 msgstr "المنشئات"
 
-#: projects/models.py:266 projects/models.py:350
+#: projects/models.py:269 projects/models.py:353
 msgid "Court"
 msgstr "المحكمة"
 
-#: projects/models.py:267
+#: projects/models.py:270
 msgid "Courts"
 msgstr "المحكام"
 
-#: projects/models.py:283
+#: projects/models.py:286
 msgid "In Progress"
 msgstr "قيد العمل"
 
-#: projects/models.py:284
+#: projects/models.py:287
 msgid "Finished"
 msgstr "منتهي"
 
-#: projects/models.py:285
+#: projects/models.py:288
 msgid "Delayed"
 msgstr "متأخر"
 
-#: projects/models.py:301
+#: projects/models.py:304
 msgid "Status Comments"
 msgstr "تعليقات الحالة"
 
-#: projects/models.py:307
+#: projects/models.py:310
 msgid "Main Assignee"
 msgstr "الموظف المكلف"
 
-#: projects/models.py:345
+#: projects/models.py:348
 msgid "Client Role"
 msgstr "دور العميل"
 
-#: projects/models.py:347
+#: projects/models.py:350
 msgid "Opponent"
 msgstr "الخصم"
 
-#: projects/models.py:348
+#: projects/models.py:351
 msgid "Opponent Role"
 msgstr "دور الخصم"
 
-#: projects/models.py:351
+#: projects/models.py:354
 msgid "Court Office"
 msgstr "مكتب المحكمة"
 
-#: projects/models.py:354
+#: projects/models.py:357
 msgid "Case"
 msgstr "القضيه"
 
-#: projects/models.py:355 projects/templates/sidebar.html:36
-#: projects/views.py:113
+#: projects/models.py:358 projects/templates/sidebar.html:36
+#: projects/views.py:99
 msgid "Cases"
 msgstr "القضايا"
 
-#: projects/models.py:362
+#: projects/models.py:365
 msgid "Consultation"
 msgstr "استشارة"
 
-#: projects/models.py:363 projects/templates/sidebar.html:37
-#: projects/views.py:119
+#: projects/models.py:366 projects/templates/sidebar.html:37
+#: projects/views.py:105
 msgid "Consultations"
 msgstr "استشارات"
 
-#: projects/models.py:370
+#: projects/models.py:373
 msgid "Paperwork"
 msgstr "تعقيب"
 
-#: projects/models.py:371 projects/templates/sidebar.html:38
-#: projects/views.py:116
+#: projects/models.py:374 projects/templates/sidebar.html:38
+#: projects/views.py:102
 msgid "Paperwork Projects"
 msgstr "مشاريع التعقيب"
 
-#: projects/models.py:383
+#: projects/models.py:386
 msgid "SMS"
 msgstr "رسائل الجوال"
 
-#: projects/models.py:384
+#: projects/models.py:387
 msgid "Email"
 msgstr "البريد الالكتروني"
 
-#: projects/models.py:385
+#: projects/models.py:388
 msgid "Both"
 msgstr "كلاهما"
 
-#: projects/models.py:389
+#: projects/models.py:392
 msgid "Reminder"
 msgstr "تذكير"
 
-#: projects/models.py:390 projects/templates/projects/update-project.html:114
+#: projects/models.py:393 projects/templates/projects/update-project.html:114
 msgid "Reminders"
 msgstr "تذكيرات"
 
-#: projects/models.py:399
+#: projects/models.py:402
 msgid "Whom To Remind"
 msgstr "التذكير لمن"
 
-#: projects/models.py:401
+#: projects/models.py:404
 msgid "Reminder Date"
 msgstr "تاريخ التذكير"
 
-#: projects/models.py:406
+#: projects/models.py:409
 msgid "Last Seen On"
 msgstr "أخر مشاهدة"
 
-#: projects/models.py:422
+#: projects/models.py:425
 msgid "Update"
 msgstr "التحديث"
 
-#: projects/models.py:423 projects/templates/projects/update-project.html:53
+#: projects/models.py:426 projects/templates/projects/update-project.html:53
 msgid "Updates"
 msgstr "التحديثات"
 
-#: projects/models.py:432
+#: projects/models.py:435
 msgid "Update Date"
 msgstr "تاريخ التحديث"
 
-#: projects/models.py:433
+#: projects/models.py:436
 msgid "Attachments"
 msgstr "المرفقات"
 
-#: projects/models.py:434
+#: projects/models.py:437
 msgid "Inform The Client"
 msgstr "أخبر العميل"
 
-#: projects/models.py:437
+#: projects/models.py:440
 msgid "Creator"
 msgstr "أنشء بواسطة"
 
@@ -778,7 +812,7 @@ msgstr "أنشء بواسطة"
 msgid "View"
 msgstr "عرض"
 
-#: projects/tables.py:30
+#: projects/tables.py:30 projects/tables.py:191
 msgid "Edit"
 msgstr "تعديل"
 
@@ -849,6 +883,7 @@ msgid "New Client"
 msgstr "عميل جديد"
 
 #: projects/templates/projects/employees_listing.html:4
+#: projects/templates/sidebar.html:64
 msgid "Employees Listing"
 msgstr "قائمة الموظفين"
 
@@ -861,6 +896,7 @@ msgid "New Employee"
 msgstr "موظف جديد"
 
 #: projects/templates/projects/lookups_listing.html:4
+#: projects/templates/sidebar.html:70
 msgid "Lookups Listing"
 msgstr "قوائم اﻷنواع"
 
@@ -913,6 +949,18 @@ msgstr "أرشيف المستندات"
 msgid "Request Funds"
 msgstr "طلب تمويل"
 
+#: projects/templates/projects/users_listing.html:4
+msgid "Users Listing"
+msgstr "قائمة المستخدمين"
+
+#: projects/templates/projects/users_listing.html:5
+msgid "All Users"
+msgstr "المستخدمين"
+
+#: projects/templates/projects/users_listing.html:8
+msgid "New User"
+msgstr "مستخدم جديد"
+
 #: projects/templates/registration/login.html:5
 msgid "Login"
 msgstr "دخول"
@@ -945,11 +993,11 @@ msgstr "أهلا وسهلا"
 msgid "Main Menu"
 msgstr "القائمة الرئيسية"
 
-#: projects/templates/sidebar.html:71
+#: projects/templates/sidebar.html:65
 msgid "Users"
 msgstr "المستخدمين"
 
-#: projects/templates/sidebar.html:85
+#: projects/templates/sidebar.html:82
 #: projects/templates/top_navigation.html:23
 msgid "Logout"
 msgstr "خروج"
@@ -962,80 +1010,85 @@ msgstr "معلومات المتابعة"
 msgid "User Profile"
 msgstr "المعلومات الشخصية"
 
-#: projects/views.py:114
+#: projects/views.py:100
 msgid "New Case"
 msgstr "قضية جديدة"
 
-#: projects/views.py:117
+#: projects/views.py:103
 msgid "New Paperwork Project"
 msgstr "مشروع تعقيب جديد"
 
-#: projects/views.py:120
+#: projects/views.py:106
 msgid "New Consultation"
 msgstr "استشارة جديدة"
 
-#: projects/views.py:149
+#: projects/views.py:133
 msgid "Project was created successfully"
 msgstr "تم إنشاء المشروع بنجاح"
 
-#: projects/views.py:172
+#: projects/views.py:155
 msgid "Project was updated successfully"
 msgstr "تم تحديث بيانات المشروع بنجاح"
 
-#: projects/views.py:226
+#: projects/views.py:209
 msgid ""
 "Fund request was submitted successfully. Check later for approval status"
 msgstr ""
 "تم إرسال طلب الصرف بنجاح، سيتم مراجعة طلبك من قبل اﻹدارة بأسرع وقت ممكن"
 
-#: projects/views.py:240
+#: projects/views.py:223
 msgid "Update was submitted successfully."
 msgstr "تم إنشاء التحديث بنجاح"
 
-#: projects/views.py:284
+#: projects/views.py:246
 msgid "Client info was updated successfully"
 msgstr "تم تحديث بيانات العميل بنجاح"
 
-#: projects/views.py:291
+#: projects/views.py:253
 msgid "Client was added successfully"
 msgstr "تم إضافة العميل بنجاح"
 
-#: projects/views.py:324
+#: projects/views.py:268
 msgid "Organization info was updated successfully"
-msgstr "تم تحديث بيانات المنظومة بنجاح"
+msgstr "تم تحديث بيانات المنشأة بنجاح"
 
-#: projects/views.py:331
+#: projects/views.py:275
 msgid "Organization was added successfully"
-msgstr "تم إضافة المنظومة بنجاح"
+msgstr "تم إضافة المنشأة بنجاح"
 
-#: projects/views.py:337
+#: projects/views.py:281
 msgid "Reminder was created successfully."
 msgstr "تم إضافة التذكير بنجاح"
 
-#: projects/views.py:361
+#: projects/views.py:302
 msgid "Employee was created successfully."
 msgstr "تم إضافة الموظف بنجاح"
 
-#: projects/views.py:370
+#: projects/views.py:311
 msgid "Employee info was updated successfully"
 msgstr "تم تحديث بيانات الموظف بنجاح"
 
-#: projects/views.py:398
+#: projects/views.py:326
 msgid "Lookup was added successfully"
 msgstr "تم إضافة النوع بنجاح"
 
-#: projects/views.py:406
+#: projects/views.py:334
 msgid "Lookup was updated successfully"
 msgstr "تم تحديث بيانات النوع بنجاح"
+
+#: projects/views.py:349
+msgid "User was added successfully"
+msgstr "تم إضافة المستخدم بنجاح"
+
+#: projects/views.py:357
+msgid "User was updated successfully"
+msgstr "تم تحديث بيانات المستخدم بنجاح"
 
 #~ msgid "Username"
 #~ msgstr "اسم المستخدم"
 
 #~ msgid "Password"
 #~ msgstr "كلمة المرور"
-
-#~ msgid "New user?"
-#~ msgstr "مستخدم جديد"
 
 #~ msgid "Create Account"
 #~ msgstr "إنشاء مستخدم"

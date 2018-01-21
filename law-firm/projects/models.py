@@ -11,8 +11,8 @@ User = settings.AUTH_USER_MODEL
 class Nationality(models.Model):
     nationality_ar = models.CharField(_('Nationality (Arabic)'), null=True, blank=False, max_length=100)
     nationality_en = models.CharField(_('Nationality (English)'), null=True, blank=True, max_length=100)
-    country_ar = models.CharField(_('Nationality (Arabic)'), null=True, blank=True, max_length=100)
-    country_en = models.CharField(_('Nationality (Arabic)'), null=True, blank=True, max_length=100)
+    country_ar = models.CharField(_('Country (Arabic)'), null=True, blank=True, max_length=100)
+    country_en = models.CharField(_('Country (English)'), null=True, blank=True, max_length=100)
     show = models.BooleanField(_('Show'), default=True)
     display_order = models.PositiveSmallIntegerField(_('Display Order'), null=True)
 
@@ -53,6 +53,7 @@ class Lookup(models.Model):
         CONSULTATION_TYPE = 'CONSULTATION_TYPE'
         PAPERWORK_TYPE = 'PAPERWORK_TYPE'
         DOCUMENT_TYPE = 'DOCUMENT_TYPE'
+        COURT_TYPE = 'COURT_TYPE'
         COURT_ROLE = 'COURT_ROLE'
 
         @classmethod
@@ -63,11 +64,12 @@ class Lookup(models.Model):
                 (cls.CONSULTATION_TYPE, _('Consultation Type')),
                 (cls.PAPERWORK_TYPE, _('Paperwork Type')),
                 (cls.DOCUMENT_TYPE, _('Document Type')),
+                (cls.COURT_TYPE, _('Court Type')),
                 (cls.COURT_ROLE, _('Court Role')),
             )
 
     lookup_type = models.CharField(max_length=30, null=True, blank=False, db_index=True,
-                                   choices=LookupTypes.choices())
+                                   choices=LookupTypes.choices(), verbose_name=_('Lookup Type'))
     lookup_value_ar = models.CharField(max_length=100, null=True, blank=False)
     lookup_value_en = models.CharField(max_length=100, null=True, blank=False)
     show = models.BooleanField(_('Show'), default=True)
@@ -138,7 +140,7 @@ class Person(models.Model):
     gender = models.CharField(_('Gender'), max_length=1, null=True, blank=True, default='M',
                               choices=Genders.choices())
     nationality = models.ForeignKey('Nationality', null=True, blank=True, on_delete=models.SET_NULL,
-                                    limit_choices_to={'show': True})
+                                    limit_choices_to={'show': True}, verbose_name=_('Nationality'))
     date_of_birth = models.DateField(_('Date Of Birth'), null=True, blank=True)
     address = models.TextField(_('Address'), null=True, blank=False)
     active = models.BooleanField(_('Is Active'), blank=False, default=False)
@@ -178,7 +180,8 @@ class Employee(Person):
     qualifications = models.TextField(_('Qualifications'), null=True, blank=True)
     monthly_salary = MoneyField(_('Monthly Salary'), null=True, blank=True,
                                 decimal_places=2, default=0, default_currency='SAR', max_digits=11,)
-    user = models.OneToOneField(User, related_name='employee', null=True, blank=True)
+    user = models.OneToOneField(User, related_name='employee', null=True, blank=True, verbose_name=_('Associated User'),
+                                help_text=_('The user associated with this employee holds the credentials data.'))
 
     class Meta:
         verbose_name = _('Employee')
@@ -199,10 +202,10 @@ class Employee(Person):
         return self.get_absolute_url()
 
 
-
 class Client(Person):
     organization = models.ForeignKey('Organization', related_name='contact_persons',
-                                     on_delete=models.SET_NULL, null=True, blank=True)
+                                     on_delete=models.SET_NULL, null=True, blank=True,
+                                     verbose_name=_('Organization'))
 
     class Meta:
         verbose_name = _('Client')
@@ -424,7 +427,7 @@ class Update(models.Model):
         ordering = ('-date', )
 
     project = models.ForeignKey('Project', related_name='updates',
-                                on_delete=models.SET_NULL, null=True, blank=True)
+                                on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Project'))
     summary_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
     summary_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
     details_ar = models.TextField(_('Description'), blank=False, null=True)

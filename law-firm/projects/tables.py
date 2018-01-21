@@ -2,7 +2,7 @@ import django_tables2 as tables
 from django.utils import formats
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
-
+from django.contrib.auth.models import User as MyUser
 from accounting.models import Transaction
 from .models import *
 
@@ -177,6 +177,22 @@ class OrganizationTable(BaseTableWithCommands):
         else:
             queryset = queryset.order_by(('-' if is_descending else '') + 'name_en')
         return queryset, True
+
+
+class UserTable(BaseTableWithCommands):
+    class Meta:
+        model = MyUser
+        fields = ['username', 'email', 'is_active', 'employee', 'employee.mobile' ]
+        attrs = {'class': 'table table-striped table-bordered', }
+
+    def render_update_link(self, *args, **kwargs):
+        record = kwargs.pop('record')
+        commands = '<a href="%s" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> %s</a>' \
+                   % (reverse_lazy('update-user', args=[record.pk]), _('Edit'))
+        return format_html(commands)
+
+    def can_update(self):
+        return True
 
 
 class EmployeeTable(BaseTableWithCommands):

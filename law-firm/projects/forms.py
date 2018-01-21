@@ -1,36 +1,44 @@
-from crispy_forms.layout import Submit, Layout, ButtonHolder, Fieldset
-from django import forms
-from crispy_forms.helper import FormHelper
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User as OriginalUser
-from django.utils import timezone
 from dal import autocomplete
-
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.models import User as MyUser
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_addanother.widgets import AddAnotherWidgetWrapper
 
+from .base_forms import *
 from .models import *
-from.base_forms import *
 
 
 class ProjectForm(BaseUpdatedByForm, forms.ModelForm):
     class Meta:
         model = Project
         fields = ['title_ar', 'title_en', 'description_ar', 'description_en', 'fees', 'main_assignee']
+        widgets = {
+            'client': AddAnotherWidgetWrapper(
+                autocomplete.ModelSelect2(url='client-autocomplete', ),
+                reverse_lazy('new-client-popup'),
+            ),
+        }
 
 
 class CaseForm(ProjectForm):
-    class Meta:
+    class Meta(ProjectForm.Meta):
         model = Case
         fields = ProjectForm.Meta.fields + ['type', 'case_reference', 'client', 'client_role',
                                             'opponent', 'opponent_role', 'court', 'court_office']
-        widgets = {
-            'client': autocomplete.ModelSelect2(url='client-autocomplete',
-                                                # add_another_url_name='client_add_another_model_create'
-                                                ),
-            'opponent': autocomplete.ModelSelect2(url='client-autocomplete', ),
-            'court': autocomplete.ModelSelect2(url='court-autocomplete', ),
-        }
+        ProjectForm.Meta.widgets.update(
+            {
+                'opponent': AddAnotherWidgetWrapper(
+                    autocomplete.ModelSelect2(url='client-autocomplete', ),
+                    reverse_lazy('new-client-popup'),
+                ),
+                'court': AddAnotherWidgetWrapper(
+                    autocomplete.ModelSelect2(url='court-autocomplete', ),
+                    reverse_lazy('new-court-popup'),
+                ),
+            }
+        )
 
     def __init__(self, *args, **kwargs):
         super(CaseForm, self).__init__(*args, **kwargs)
@@ -91,8 +99,20 @@ class NewUpdateForm(BaseUpdatedByForm, forms.ModelForm):
         return instance
 
 
-class ClientForm(BaseUpdatedByForm, forms.ModelForm):
+class PersonForm(BaseUpdatedByForm, forms.ModelForm):
     class Meta:
+        model = Person
+        fields = '__all__'
+        widgets = {
+            'nationality': AddAnotherWidgetWrapper(
+                autocomplete.ModelSelect2(url='nationality-autocomplete', ),
+                reverse_lazy('new_nationality_popup')
+            ),
+        }
+
+
+class ClientForm(PersonForm):
+    class Meta(PersonForm.Meta):
         model = Client
         fields = ['organization', 'name_ar', 'name_en', 'mobile', 'home_phone', 'work_phone', 'personal_email',
                   'government_id', 'gender', 'nationality', 'date_of_birth', 'address', 'active', 'personal_picture', ]
@@ -101,10 +121,14 @@ class ClientForm(BaseUpdatedByForm, forms.ModelForm):
                               'the organization does NOT appear in the list, you need to add it first and '
                               'come back here')
         }
-        widgets = {
-            'organization': autocomplete.ModelSelect2(url='org-autocomplete', ),
-            'nationality': autocomplete.ModelSelect2(url='nationality-autocomplete', ),
-        }
+        PersonForm.Meta.widgets.update(
+            {
+                'organization': AddAnotherWidgetWrapper(
+                    autocomplete.ModelSelect2(url='org-autocomplete', ),
+                    reverse_lazy('new_organization_popup')
+                ),
+            }
+        )
 
 
 class OrganizationForm(BaseUpdatedByForm, forms.ModelForm):
@@ -117,6 +141,29 @@ class OrganizationForm(BaseUpdatedByForm, forms.ModelForm):
         super(OrganizationForm, self).__init__(*args, **kwargs)
         self.fields['type'].widget = \
             forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.ORGANIZATION_TYPE))
+
+
+class CourtForm(OrganizationForm):
+    class Meta:
+        model = Court
+        fields = '__all__'
+        exclude = ['created_by', 'created_on', 'updated_by', 'updated_on']
+        labels = {
+            'name_ar': _('Court Name (Arabic)'),
+            'name_en': _('Court Name (English)'),
+            'type': _('Court Type'),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(CourtForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.COURT_TYPE))
+
+
+class NationalityForm(BaseUpdatedByForm, forms.ModelForm):
+    class Meta:
+        model = Nationality
+        fields = '__all__'
 
 
 class NewReminderForm(BaseUpdatedByForm, forms.ModelForm):
@@ -139,17 +186,19 @@ class NewReminderForm(BaseUpdatedByForm, forms.ModelForm):
         return instance
 
 
-class NewEmployeeForm(BaseUpdatedByForm, forms.ModelForm):
-    class Meta:
+class NewEmployeeForm(PersonForm):
+    class Meta(PersonForm.Meta):
         model = Employee
         fields = '__all__'
         exclude = ['updated_on', 'updated_by', 'created_on', 'created_by']
-        widgets = {
-            'user': AddAnotherWidgetWrapper(
-                forms.Select,
-                reverse_lazy('new-user'),
-            ),
-        }
+        PersonForm.Meta.widgets.update(
+            {
+                'user': AddAnotherWidgetWrapper(
+                    forms.Select,
+                    reverse_lazy('new-user-popup'),
+                ),
+            }
+        )
 
     def __init__(self, *args, **kwargs):
         super(NewEmployeeForm, self).__init__(*args, **kwargs)
@@ -157,7 +206,7 @@ class NewEmployeeForm(BaseUpdatedByForm, forms.ModelForm):
 
 class MyUserCreationForm(BaseCrispyForm, UserCreationForm):
     class Meta:
-        model = OriginalUser
+        model = MyUser
         fields = ['username', 'password1', 'password2', 'email', 'groups']
 
     def __init__(self, *args, **kwargs):
@@ -166,7 +215,6 @@ class MyUserCreationForm(BaseCrispyForm, UserCreationForm):
 
 
 class MyUserChangeForm(BaseCrispyForm, UserChangeForm):
-
     def __init__(self, *args, **kwargs):
         super(MyUserChangeForm, self).__init__(*args, **kwargs)
         self.helper.add_input(Submit('submit', _('Submit')))

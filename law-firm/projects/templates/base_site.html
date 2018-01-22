@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load generic_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
@@ -13,7 +14,7 @@
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 		{% endblock meta %}
 
-{#		      <title>نظام مكتب المحاماة | {% block title %}{% endblock %}</title>#}
+		      <title>{% trans 'Lawyer System' %} | {% block title %}{% endblock %}</title>
 
 		{% block stylesheets %}
 			<!-- Bootstrap -->
@@ -46,7 +47,7 @@
 
 			{% block sidebar %}
 				<div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
-					{% include "sidebar.html" %}
+				{% sidebar_navigation_menu %}
 				</div>
 			{% endblock sidebar %}
 

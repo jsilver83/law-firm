@@ -31,6 +31,7 @@
 		<div class="menu_section">
 			<h3>{% trans 'Main Menu' %}</h3>
 			<ul class="nav side-menu">
+				{% if lawyer %}
 				<li><a><i class="fa fa-home"></i> {% trans 'Projects' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
 						<li><a href="{% url 'case_listing' 'Case' %}">{% trans 'Cases' %}</a></li>
@@ -38,16 +39,20 @@
 						<li><a href="{% url 'case_listing' 'Paperwork' %}">{% trans 'Paperwork Projects' %}</a></li>
 					</ul>
 				</li>
+			{% endif %}
 				<li><a><i class="fa fa-edit"></i> {% trans 'Clients' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
 						<li><a href="{% url 'organizations' %}">{% trans 'Organizations' %}</a></li>
 						<li><a href="{% url 'clients' %}">{% trans 'Individuals' %}</a></li>
 					</ul>
 				</li>
+			{% if archive %}
 				<li><a href="{% url 'archive_listing' %}">
 					<i class="fa fa-desktop"></i> {% trans 'Archive' %}
 				</a>
 				</li>
+			{% endif %}
+			{% if accounting %}
 				<li><a><i class="fa fa-bar-chart-o"></i> {% trans 'Accounting' %}
 					<span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
@@ -56,6 +61,8 @@
 						<li><a href="{% url 'fund_request_listing' %}">{% trans 'Fund Requests' %}</a></li>
 					</ul>
 				</li>
+			{% endif %}
+			{% if admin %}
 				<li>
 					<a>
 						<i class="fa fa-user"></i>{% trans 'Employees' %} <span class="fa fa-chevron-down"></span>
@@ -70,6 +77,7 @@
 						<i class="fa fa-clone"></i>{% trans 'Lookups Listing' %}
 					</a>
 				</li>
+			{% endif %}
 				<li>
 					{% if LANGUAGE_CODE == 'ar' %}
 						<a href="/en{{ request.get_full_path|slice:'3:' }}">

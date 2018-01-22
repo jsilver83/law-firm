@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-21 09:05+0000\n"
+"POT-Creation-Date: 2018-01-21 09:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Abdullah Joud <abd.jod2004@gmail.com>\n"
 "Language-Team: ICTC \n"
@@ -438,8 +438,8 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: projects/base_forms.py:34 projects/forms.py:213 projects/forms.py:219
-#: projects/forms.py:229
+#: projects/base_forms.py:34 projects/forms.py:214 projects/forms.py:220
+#: projects/forms.py:230
 msgid "Submit"
 msgstr ""
 
@@ -481,6 +481,10 @@ msgstr ""
 
 #: projects/forms.py:153
 msgid "Court Name (English)"
+msgstr ""
+
+#: projects/forms.py:154 projects/models.py:67
+msgid "Court Type"
 msgstr ""
 
 #: projects/models.py:12
@@ -529,10 +533,6 @@ msgstr ""
 
 #: projects/models.py:65
 msgid "Paperwork Type"
-msgstr ""
-
-#: projects/models.py:67
-msgid "Court Type"
 msgstr ""
 
 #: projects/models.py:68
@@ -701,6 +701,10 @@ msgstr ""
 
 #: projects/models.py:304
 msgid "Status Comments"
+msgstr ""
+
+#: projects/models.py:307
+msgid "Fees"
 msgstr ""
 
 #: projects/models.py:310
@@ -881,7 +885,7 @@ msgid "New Client"
 msgstr ""
 
 #: projects/templates/projects/employees_listing.html:4
-#: projects/templates/sidebar.html:64
+#: projects/templates/sidebar.html:65
 msgid "Employees Listing"
 msgstr ""
 
@@ -991,7 +995,7 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: projects/templates/sidebar.html:65
+#: projects/templates/sidebar.html:64
 msgid "Users"
 msgstr ""
 

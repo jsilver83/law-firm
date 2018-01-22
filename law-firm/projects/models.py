@@ -304,7 +304,7 @@ class Project(models.Model):
     status_comments = models.CharField(_('Status Comments'), max_length=500, null=True, blank=True)
     client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=False,
                                related_name='%(app_label)s_%(class)s', verbose_name=_('Client'))
-    fees = models.CharField(max_length=200, blank=False, null=True)
+    fees = models.CharField(_('Fees'), max_length=200, blank=False, null=True)
     main_assignee = models.ForeignKey('Employee', on_delete=models.SET_NULL, null=True, blank=False,
                                       related_name='assigned_%(app_label)s_%(class)s',
                                       verbose_name=_('Main Assignee'))

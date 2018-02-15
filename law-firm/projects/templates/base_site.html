@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load generic_tags %}
+{% load staticfiles %}
 {% get_current_language as LANGUAGE_CODE %}
 
 <!DOCTYPE html>
@@ -33,6 +34,7 @@
 			<link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
 		{% endblock stylesheets %}
 		<!-- Custom Theme Style -->
+		<link href="{% static 'tellme/feedback.min.css' %}" rel="stylesheet">
 		<link href="/static/build/css/custom.css" rel="stylesheet">
 		{% if LANGUAGE_CODE == 'ar' %}
 		<link href="/static/build/css/custom-ar.css" rel="stylesheet">
@@ -41,6 +43,9 @@
 </head>
 
 <body class="{% block body_class %}nav-md {% endblock body_class %}">
+	<button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+	    {% trans 'Feedback' %} <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+	</button>
 {% block body %}
 	<div class="container body">
 		<div class="main_container">
@@ -118,8 +123,13 @@
 		{{ form.media }}
 		{{ filter.form.media }}
 	{% endblock %}
+
+	<script src="{% static 'tellme/feedback.min.js' %}"></script>
+	{%  include 'tellme/js_inc.html' %}
+
 	<!-- Custom Theme Scripts -->
 	<script src="/static/build/js/custom.js"></script>
+
 {% endblock body %}
 </body>
 </html>

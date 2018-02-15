@@ -40,7 +40,9 @@ urlpatterns = [
     url(r'^new-lookup/$', views.NewLookupView.as_view(), name='new-lookup'),
     url(r'^lookup/(?P<pk>\d+)/$', views.UpdateLookupView.as_view(), name='update-lookup'),
 
+    url(r'^project-autocomplete/$', auto_complete_views.ProjectAutocomplete.as_view(), name='project-autocomplete', ),
     url(r'^client-autocomplete/$', auto_complete_views.ClientAutocomplete.as_view(), name='client-autocomplete', ),
+    url(r'^person-autocomplete/$', auto_complete_views.PersonAutocomplete.as_view(), name='person-autocomplete', ),
     url(r'^org-autocomplete/$', auto_complete_views.OrganizationAutocomplete.as_view(), name='org-autocomplete', ),
     url(r'^court-autocomplete/$', auto_complete_views.CourtAutocomplete.as_view(), name='court-autocomplete', ),
     url(r'^nationality-autocomplete/$',

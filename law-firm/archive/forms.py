@@ -1,6 +1,9 @@
+from dal import autocomplete
+
 from django import forms
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django_addanother.widgets import AddAnotherWidgetWrapper
 
 from projects.base_forms import *
 from .models import *
@@ -8,7 +11,8 @@ from .models import *
 
 class NewDocumentAndMovementForm(BaseUpdatedByForm, forms.ModelForm):
     document_upload = forms.FileField(label=_('Document Upload'), required=True)
-    project = forms.ModelChoiceField(label=_('Project'), required=True, queryset=Project.objects.all())
+    project = forms.ModelChoiceField(label=_('Project'), required=True, queryset=Project.objects.all(),
+                                     widget=autocomplete.ModelSelect2(url='client-autocomplete', ) )
     title_ar = forms.CharField(label=_('Title'), max_length=100, required=True,
                                help_text=_('Document Title'))
     title_en = forms.CharField(label=_('Title (English)'), max_length=100, required=False)
@@ -30,8 +34,14 @@ class NewDocumentAndMovementForm(BaseUpdatedByForm, forms.ModelForm):
             'description': _('Describe the movement of the document not the document itself'),
         }
 
+        widgets = {
+            'handing_party': autocomplete.ModelSelect2(url='person-autocomplete', ),
+        }
+
     def __init__(self, *args, **kwargs):
         super(NewDocumentAndMovementForm, self).__init__(*args, **kwargs)
+        self.fields['type'].widget = \
+            forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.DOCUMENT_TYPE))
         # self.fields['project'].choices = ((o, o.title) for o in )
 
     def save(self, commit=True):

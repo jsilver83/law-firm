@@ -161,9 +161,24 @@ class Person(models.Model):
         else:
             return self.name_en
 
-    # TODO: FIX STR ERROR
     def __str__(self):
-        return self.name if self.name else ''
+        person_type = ''
+        try:
+            obj1 = self.employee
+            if obj1:
+                person_type = _('Employee')
+        except:
+            pass
+
+        try:
+            obj2 = self.client
+
+            if obj2:
+                person_type = _('Client')
+        except:
+            pass
+
+        return '(%s) %s' % (person_type, self.name) if self.name else ''
 
     @property
     def picture(self):

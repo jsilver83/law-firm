@@ -30,7 +30,7 @@ class DocumentMovementTable(BaseTableWithCommands):
     def render_handing_party(self, value, **kwargs):
         record = kwargs.pop('record')
         return format_html('<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" '
-                           'title="" data-original-title="%s">%s</button>'%(record.getsa7ar565_handing_party_role_display(),
+                           'title="" data-original-title="%s">%s</button>'%(record.get_handing_party_role_display(),
                                                                             value))
 
     def render_receiving_party(self, value, **kwargs):

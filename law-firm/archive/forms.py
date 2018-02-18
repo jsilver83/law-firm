@@ -12,7 +12,7 @@ from .models import *
 class NewDocumentAndMovementForm(BaseUpdatedByForm, forms.ModelForm):
     document_upload = forms.FileField(label=_('Document Upload'), required=True)
     project = forms.ModelChoiceField(label=_('Project'), required=True, queryset=Project.objects.all(),
-                                     widget=autocomplete.ModelSelect2(url='client-autocomplete', ) )
+                                     widget=autocomplete.ModelSelect2(url='project-autocomplete'))
     title_ar = forms.CharField(label=_('Title'), max_length=100, required=True,
                                help_text=_('Document Title'))
     title_en = forms.CharField(label=_('Title (English)'), max_length=100, required=False)
@@ -42,7 +42,7 @@ class NewDocumentAndMovementForm(BaseUpdatedByForm, forms.ModelForm):
         super(NewDocumentAndMovementForm, self).__init__(*args, **kwargs)
         self.fields['type'].widget = \
             forms.Select(choices=Lookup.get_lookup_choices(Lookup.LookupTypes.DOCUMENT_TYPE))
-        # self.fields['project'].choices = ((o, o.title) for o in )
+        self.fields['project'].queryset = Project.objects.all()
 
     def save(self, commit=True):
         instance = super(NewDocumentAndMovementForm, self).save(commit=False)

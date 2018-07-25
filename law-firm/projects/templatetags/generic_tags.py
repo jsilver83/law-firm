@@ -15,6 +15,7 @@ def sidebar_navigation_menu(context):
     archive = user.groups.filter(name__in=['Admins', 'Archive']).exists() or user.is_superuser
 
     return {
+        'request': context['request'],
         'user': user,
         'admin': admin,
         'lawyer': lawyer,

@@ -178,11 +178,11 @@ class Transaction(models.Model):
         NA = _('N/A')
 
     title_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
-    title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
+    title_en = models.CharField(_('Title (English)'), max_length=100, blank=True, null=True)
     amount = MoneyField(_('Amount'), null=True, blank=False,
                         decimal_places=2, default=0, default_currency='SAR', max_digits=11, )
     description_ar = models.CharField(_('Description'), null=True, blank=False, max_length=255)
-    description_en = models.CharField(_('Description (English)'), null=True, blank=False, max_length=255)
+    description_en = models.CharField(_('Description (English)'), null=True, blank=True, max_length=255)
     invoice = models.ForeignKey('Invoice', related_name='transactions',
                                 on_delete=models.SET_NULL, null=True, blank=True)
     fund_request = models.ForeignKey('FundRequest', related_name='transactions',

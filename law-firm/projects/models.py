@@ -242,7 +242,7 @@ class Client(Person):
 
 class Organization(models.Model):
     name_ar = models.CharField(_('Organization Name'), max_length=100, null=True, blank=False)
-    name_en = models.CharField(_('Organization Name (English)'), max_length=100, null=True, blank=False)
+    name_en = models.CharField(_('Organization Name (English)'), max_length=100, null=True, blank=True)
     type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
     phone = models.CharField(_('Phone'), max_length=20, null=True, blank=True)
     fax = models.CharField(_('Fax'), max_length=20, null=True, blank=True)
@@ -311,9 +311,9 @@ class Project(models.Model):
         ordering = ('-updated_on', 'created_on', )
 
     title_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
-    title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
+    title_en = models.CharField(_('Title (English)'), max_length=100, blank=True, null=True)
     description_ar = models.TextField(_('Description'), blank=False, null=True)
-    description_en = models.TextField(_('Description (English)'), blank=False, null=True)
+    description_en = models.TextField(_('Description (English)'), blank=True, null=True)
     status = models.CharField(_('Status'), max_length=20, null=True, blank=False,
                               choices=Statuses.choices(), default=Statuses.NEW)
     status_comments = models.CharField(_('Status Comments'), max_length=500, null=True, blank=True)
@@ -358,7 +358,7 @@ class Project(models.Model):
 
 
 class Case(Project):
-    case_reference = models.CharField(_('Case Reference'), max_length=100, null=True, blank=False)
+    case_reference = models.CharField(_('Case Reference'), max_length=100, null=True, blank=True)
     type = models.CharField(_('Type'), max_length=100, null=True, blank=False)
     client_role = models.CharField(_('Client Role'), max_length=100, null=True, blank=False)
     opponent = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True, blank=False,
@@ -409,9 +409,9 @@ class Reminder(models.Model):
         ordering = ('-date', )
 
     title_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
-    title_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
+    title_en = models.CharField(_('Title (English)'), max_length=100, blank=True, null=True)
     description_ar = models.TextField(_('Description'), blank=False, null=True)
-    description_en = models.TextField(_('Description (English)'), blank=False, null=True)
+    description_en = models.TextField(_('Description (English)'), blank=True, null=True)
     whom_to_remind = models.ForeignKey('Employee', on_delete=models.SET_NULL,
                                        null=True, blank=False,
                                        verbose_name=_('Whom To Remind'),
@@ -444,9 +444,9 @@ class Update(models.Model):
     project = models.ForeignKey('Project', related_name='updates',
                                 on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_('Project'))
     summary_ar = models.CharField(_('Title'), max_length=100, blank=False, null=True)
-    summary_en = models.CharField(_('Title (English)'), max_length=100, blank=False, null=True)
+    summary_en = models.CharField(_('Title (English)'), max_length=100, blank=True, null=True)
     details_ar = models.TextField(_('Description'), blank=False, null=True)
-    details_en = models.TextField(_('Description (English)'), blank=False, null=True)
+    details_en = models.TextField(_('Description (English)'), blank=True, null=True)
     date = models.DateTimeField(_('Update Date'), null=True, blank=False)
     attachments = models.FileField(_('Attachments'), null=True, blank=True)
     inform_the_client = models.BooleanField(_('Inform The Client'), default=True)

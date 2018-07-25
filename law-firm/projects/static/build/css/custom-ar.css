@@ -212,3 +212,10 @@ ul.messages li .message_wrapper blockquote {
     border-left: inherit!important;
     border-right: 5px solid #eee;
 }
+
+.feedback-logo {
+    background: url(../images/icons.png) 200px 0px no-repeat!important;
+    width: 234px!important;
+    padding-right: 40px!important;
+    padding-left: inherit;!important;
+}

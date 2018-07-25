@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-15 09:51+0000\n"
-"PO-Revision-Date: 2018-01-21 17:55+0300\n"
+"POT-Creation-Date: 2018-07-25 08:41+0000\n"
+"PO-Revision-Date: 2018-07-25 11:47+0300\n"
 "Last-Translator: Abdullah Joud <abd.jod2004@gmail.com>\n"
 "Language-Team: ICTC\n"
 "Language: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: accounting/apps.py:7 accounting/models.py:163
 #: projects/templates/sidebar.html:56
@@ -169,6 +169,7 @@ msgstr "العنوان (الإنجليزية)"
 #: archive/models.py:18 archive/models.py:51 archive/models.py:97
 #: projects/models.py:315 projects/models.py:413 projects/models.py:448
 #: projects/templates/accounting/new_payment.html:22
+#: projects/templates/tellme/tpl-overview.html:5
 msgid "Description"
 msgstr "وصف"
 
@@ -304,7 +305,7 @@ msgstr "الأرشيف"
 
 #: archive/filters.py:10
 msgid "INBOX"
-msgstr ""
+msgstr "صندوق الوارد"
 
 #: archive/filters.py:16 archive/forms.py:21 archive/models.py:20
 #: projects/models.py:246 projects/models.py:362 projects/models.py:377
@@ -441,7 +442,7 @@ msgid "Search"
 msgstr "بحث"
 
 #: projects/base_forms.py:34 projects/forms.py:214 projects/forms.py:226
-#: projects/forms.py:236
+#: projects/forms.py:236 projects/templates/tellme/tpl-overview.html:15
 msgid "Submit"
 msgstr "حفظ"
 
@@ -879,6 +880,11 @@ msgid "Lawyer System"
 msgstr "نظام المحاماة"
 
 #: projects/templates/base_site.html:47
+#: projects/templates/tellme/tpl-description.html:3
+#: projects/templates/tellme/tpl-highlighter.html:3
+#: projects/templates/tellme/tpl-overview.html:3
+#: projects/templates/tellme/tpl-submit-error.html:3
+#: projects/templates/tellme/tpl-submit-success.html:3
 msgid "Feedback"
 msgstr "مشكلة أو ملاحظة؟"
 
@@ -1012,6 +1018,113 @@ msgstr "خروج"
 #: projects/templates/snippets/audit.html:4
 msgid "Audit Data"
 msgstr "معلومات المتابعة"
+
+#: projects/templates/tellme/tpl-description.html:4
+msgid ""
+"Feedback lets you send us suggestions about this site. We welcome problem "
+"reports, feature ideas and general comments."
+msgstr ""
+"تتيح لك التعليقات إرسال اقتراحات لنا حول هذا الموقع. نحن نرحب بتقارير "
+"المشكلات وأفكار الميزات والتعليقات العامة."
+
+#: projects/templates/tellme/tpl-description.html:6
+msgid "If you wish to be contacted please leave us your email:"
+msgstr ""
+"إذا كنت ترغب في أن يتم الاتصال بك ، يرجى ترك لنا البريد الإلكتروني الخاص بك:"
+
+#: projects/templates/tellme/tpl-description.html:9
+msgid "Start by writing a brief description:"
+msgstr "ابدأ بكتابة وصف مختصر:"
+
+#: projects/templates/tellme/tpl-description.html:11
+msgid ""
+"Next we'll let you identify areas of the page related to your description."
+msgstr "بعد ذلك سنسمح لك بتحديد مناطق الصفحة ذات الصلة بوصفك."
+
+#: projects/templates/tellme/tpl-description.html:12
+#: projects/templates/tellme/tpl-highlighter.html:15
+msgid "Next"
+msgstr "التالي"
+
+#: projects/templates/tellme/tpl-description.html:13
+#: projects/templates/tellme/tpl-overview.html:18
+msgid "Please enter a description."
+msgstr "الرجاء إدخال وصف."
+
+#: projects/templates/tellme/tpl-highlighter.html:4
+msgid ""
+"Click and drag on the page to help us better understand your feedback. You "
+"can move this dialog if it's in the way."
+msgstr ""
+"انقر على الصفحة واسحبها لمساعدتنا على فهم تعليقاتك بشكل أفضل. يمكنك نقل مربع "
+"الحوار هذا إذا كان في الطريق."
+
+#: projects/templates/tellme/tpl-highlighter.html:7
+msgid "Highlight"
+msgstr "تحديد"
+
+#: projects/templates/tellme/tpl-highlighter.html:8
+msgid "Highlight areas relevant to your feedback."
+msgstr "أبرز المناطق ذات الصلة بتعليقاتك."
+
+#: projects/templates/tellme/tpl-highlighter.html:11
+msgid "Black out"
+msgstr "إخفاء"
+
+#: projects/templates/tellme/tpl-highlighter.html:12
+msgid "Black out any personal information."
+msgstr "احجب أي معلومات شخصية."
+
+#: projects/templates/tellme/tpl-highlighter.html:18
+#: projects/templates/tellme/tpl-overview.html:16
+msgid "Back"
+msgstr "العودة"
+
+#: projects/templates/tellme/tpl-overview.html:6
+msgid "Additional info"
+msgstr "معلومات إضافية"
+
+#: projects/templates/tellme/tpl-overview.html:7
+msgid "None"
+msgstr "لا يوجد"
+
+#: projects/templates/tellme/tpl-overview.html:8
+msgid "Browser Info"
+msgstr "معلومات المتصفح"
+
+#: projects/templates/tellme/tpl-overview.html:9
+msgid "Page Info"
+msgstr "معلومات الصفحة"
+
+#: projects/templates/tellme/tpl-overview.html:10
+msgid "Page Structure"
+msgstr "تقسيم الصفحة"
+
+#: projects/templates/tellme/tpl-overview.html:13
+msgid "Screenshot"
+msgstr "صورة"
+
+#: projects/templates/tellme/tpl-submit-error.html:4
+msgid "Sadly an error occurred while sending your feedback. Please try again."
+msgstr "للأسف حدث خطأ أثناء إرسال ملاحظاتك. حاول مرة اخرى."
+
+#: projects/templates/tellme/tpl-submit-error.html:5
+#: projects/templates/tellme/tpl-submit-success.html:6
+msgid "OK"
+msgstr "موافق"
+
+#: projects/templates/tellme/tpl-submit-success.html:4
+msgid ""
+"Thank you for your feedback. We value every piece of feedback we receive."
+msgstr "شكرا لك على ملاحظاتك. نحن نقدر كل جزء من ردود الفعل التي نتلقاها."
+
+#: projects/templates/tellme/tpl-submit-success.html:5
+msgid ""
+"We cannot respond individually to every one, but we will use your comments "
+"as we strive to improve your experience."
+msgstr ""
+"لا يمكننا الرد بشكل فردي على كل واحد ، ولكننا سنستخدم تعليقاتك ونحن نسعى "
+"جاهدين لتحسين تجربتك."
 
 #: projects/templates/top_navigation.html:20
 msgid "User Profile"

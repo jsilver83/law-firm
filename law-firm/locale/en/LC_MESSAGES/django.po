@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-15 09:51+0000\n"
+"POT-Creation-Date: 2018-07-25 08:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Abdullah Joud <abd.jod2004@gmail.com>\n"
 "Language-Team: ICTC \n"
@@ -167,6 +167,7 @@ msgstr ""
 #: archive/models.py:18 archive/models.py:51 archive/models.py:97
 #: projects/models.py:315 projects/models.py:413 projects/models.py:448
 #: projects/templates/accounting/new_payment.html:22
+#: projects/templates/tellme/tpl-overview.html:5
 msgid "Description"
 msgstr ""
 
@@ -439,7 +440,7 @@ msgid "Search"
 msgstr ""
 
 #: projects/base_forms.py:34 projects/forms.py:214 projects/forms.py:226
-#: projects/forms.py:236
+#: projects/forms.py:236 projects/templates/tellme/tpl-overview.html:15
 msgid "Submit"
 msgstr ""
 
@@ -877,6 +878,11 @@ msgid "Lawyer System"
 msgstr ""
 
 #: projects/templates/base_site.html:47
+#: projects/templates/tellme/tpl-description.html:3
+#: projects/templates/tellme/tpl-highlighter.html:3
+#: projects/templates/tellme/tpl-overview.html:3
+#: projects/templates/tellme/tpl-submit-error.html:3
+#: projects/templates/tellme/tpl-submit-success.html:3
 msgid "Feedback"
 msgstr "Feedback"
 
@@ -1009,6 +1015,106 @@ msgstr ""
 
 #: projects/templates/snippets/audit.html:4
 msgid "Audit Data"
+msgstr ""
+
+#: projects/templates/tellme/tpl-description.html:4
+msgid ""
+"Feedback lets you send us suggestions about this site. We welcome problem "
+"reports, feature ideas and general comments."
+msgstr ""
+
+#: projects/templates/tellme/tpl-description.html:6
+msgid "If you wish to be contacted please leave us your email:"
+msgstr ""
+
+#: projects/templates/tellme/tpl-description.html:9
+msgid "Start by writing a brief description:"
+msgstr ""
+
+#: projects/templates/tellme/tpl-description.html:11
+msgid ""
+"Next we'll let you identify areas of the page related to your description."
+msgstr ""
+
+#: projects/templates/tellme/tpl-description.html:12
+#: projects/templates/tellme/tpl-highlighter.html:15
+msgid "Next"
+msgstr ""
+
+#: projects/templates/tellme/tpl-description.html:13
+#: projects/templates/tellme/tpl-overview.html:18
+msgid "Please enter a description."
+msgstr ""
+
+#: projects/templates/tellme/tpl-highlighter.html:4
+msgid ""
+"Click and drag on the page to help us better understand your feedback. You "
+"can move this dialog if it's in the way."
+msgstr ""
+
+#: projects/templates/tellme/tpl-highlighter.html:7
+msgid "Highlight"
+msgstr ""
+
+#: projects/templates/tellme/tpl-highlighter.html:8
+msgid "Highlight areas relevant to your feedback."
+msgstr ""
+
+#: projects/templates/tellme/tpl-highlighter.html:11
+msgid "Black out"
+msgstr ""
+
+#: projects/templates/tellme/tpl-highlighter.html:12
+msgid "Black out any personal information."
+msgstr ""
+
+#: projects/templates/tellme/tpl-highlighter.html:18
+#: projects/templates/tellme/tpl-overview.html:16
+msgid "Back"
+msgstr ""
+
+#: projects/templates/tellme/tpl-overview.html:6
+msgid "Additional info"
+msgstr ""
+
+#: projects/templates/tellme/tpl-overview.html:7
+msgid "None"
+msgstr ""
+
+#: projects/templates/tellme/tpl-overview.html:8
+msgid "Browser Info"
+msgstr ""
+
+#: projects/templates/tellme/tpl-overview.html:9
+msgid "Page Info"
+msgstr ""
+
+#: projects/templates/tellme/tpl-overview.html:10
+msgid "Page Structure"
+msgstr ""
+
+#: projects/templates/tellme/tpl-overview.html:13
+msgid "Screenshot"
+msgstr ""
+
+#: projects/templates/tellme/tpl-submit-error.html:4
+msgid "Sadly an error occurred while sending your feedback. Please try again."
+msgstr ""
+
+#: projects/templates/tellme/tpl-submit-error.html:5
+#: projects/templates/tellme/tpl-submit-success.html:6
+msgid "OK"
+msgstr ""
+
+#: projects/templates/tellme/tpl-submit-success.html:4
+msgid ""
+"Thank you for your feedback. We value every piece of feedback we receive."
+msgstr ""
+
+#: projects/templates/tellme/tpl-submit-success.html:5
+msgid ""
+"We cannot respond individually to every one, but we will use your comments "
+"as we strive to improve your experience."
 msgstr ""
 
 #: projects/templates/top_navigation.html:20

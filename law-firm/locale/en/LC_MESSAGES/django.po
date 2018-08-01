@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-25 08:41+0000\n"
+"POT-Creation-Date: 2018-08-01 12:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Abdullah Joud <abd.jod2004@gmail.com>\n"
 "Language-Team: ICTC \n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: accounting/apps.py:7 accounting/models.py:163
-#: projects/templates/sidebar.html:56
+#: projects/templates/sidebar.html:57
 msgid "Accounting"
 msgstr ""
 
@@ -116,14 +116,14 @@ msgid "Created By"
 msgstr ""
 
 #: accounting/models.py:47 accounting/models.py:115 accounting/models.py:205
-#: archive/models.py:25 archive/tables.py:71 projects/models.py:152
+#: archive/models.py:25 archive/tables.py:73 projects/models.py:152
 #: projects/models.py:256 projects/models.py:330 projects/tables.py:57
 #: projects/templates/snippets/audit.html:23
 msgid "Updated On"
 msgstr ""
 
 #: accounting/models.py:49 accounting/models.py:117 accounting/models.py:207
-#: archive/models.py:28 archive/tables.py:69 projects/models.py:154
+#: archive/models.py:28 archive/tables.py:71 projects/models.py:154
 #: projects/models.py:258 projects/models.py:332 projects/tables.py:55
 #: projects/templates/snippets/audit.html:29
 msgid "Updated By"
@@ -134,7 +134,7 @@ msgid "Fund Request"
 msgstr ""
 
 #: accounting/models.py:53 projects/templates/projects/update-project.html:163
-#: projects/templates/sidebar.html:61
+#: projects/templates/sidebar.html:62
 msgid "Fund Requests"
 msgstr ""
 
@@ -152,8 +152,8 @@ msgstr ""
 
 #: accounting/models.py:98 accounting/models.py:180 archive/forms.py:16
 #: archive/models.py:16 archive/models.py:50 projects/models.py:313
-#: projects/models.py:411 projects/models.py:446
-#: projects/templates/accounting/new_payment.html:12
+#: projects/models.py:411 projects/models.py:446 projects/tables.py:95
+#: projects/tables.py:134 projects/templates/accounting/new_payment.html:12
 msgid "Title"
 msgstr ""
 
@@ -166,7 +166,7 @@ msgstr ""
 #: accounting/models.py:100 accounting/models.py:184 archive/forms.py:19
 #: archive/models.py:18 archive/models.py:51 archive/models.py:97
 #: projects/models.py:315 projects/models.py:413 projects/models.py:448
-#: projects/templates/accounting/new_payment.html:22
+#: projects/tables.py:135 projects/templates/accounting/new_payment.html:22
 #: projects/templates/tellme/tpl-overview.html:5
 msgid "Description"
 msgstr ""
@@ -196,7 +196,7 @@ msgstr ""
 msgid "Invoice"
 msgstr ""
 
-#: accounting/models.py:121 projects/templates/sidebar.html:60
+#: accounting/models.py:121 projects/templates/sidebar.html:61
 msgid "Invoices"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Transaction"
 msgstr ""
 
-#: accounting/models.py:211 projects/templates/sidebar.html:59
+#: accounting/models.py:211 projects/templates/sidebar.html:60
 msgid "Transactions"
 msgstr ""
 
@@ -297,7 +297,7 @@ msgstr ""
 msgid "Payment was added successfully"
 msgstr ""
 
-#: archive/apps.py:7 archive/models.py:78 projects/templates/sidebar.html:51
+#: archive/apps.py:7 archive/models.py:78 projects/templates/sidebar.html:52
 msgid "Archive"
 msgstr ""
 
@@ -347,11 +347,11 @@ msgstr ""
 msgid "Out With A Client"
 msgstr ""
 
-#: archive/models.py:21 archive/tables.py:67
+#: archive/models.py:21 archive/tables.py:69
 msgid "Uploaded On"
 msgstr ""
 
-#: archive/models.py:24 archive/tables.py:65
+#: archive/models.py:24 archive/tables.py:67
 msgid "Uploaded By"
 msgstr ""
 
@@ -391,15 +391,19 @@ msgstr ""
 msgid "Document Movements"
 msgstr ""
 
-#: archive/tables.py:45
+#: archive/tables.py:14
+msgid "Movement Type"
+msgstr ""
+
+#: archive/tables.py:47
 msgid "Check Out"
 msgstr ""
 
-#: archive/tables.py:50
+#: archive/tables.py:52
 msgid "Check In"
 msgstr ""
 
-#: archive/tables.py:73 projects/tables.py:59
+#: archive/tables.py:75 projects/tables.py:59
 msgid "Audit"
 msgstr ""
 
@@ -419,15 +423,15 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: projects/admin.py:75
+#: projects/admin.py:88
 msgid "Law Firm"
 msgstr ""
 
-#: projects/admin.py:76
+#: projects/admin.py:89
 msgid "System Administration"
 msgstr ""
 
-#: projects/admin.py:77
+#: projects/admin.py:90
 msgid "Administration"
 msgstr ""
 
@@ -439,8 +443,8 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: projects/base_forms.py:34 projects/forms.py:214 projects/forms.py:226
-#: projects/forms.py:236 projects/templates/tellme/tpl-overview.html:15
+#: projects/base_forms.py:34 projects/forms.py:224 projects/forms.py:236
+#: projects/forms.py:246 projects/templates/tellme/tpl-overview.html:15
 msgid "Submit"
 msgstr ""
 
@@ -457,7 +461,7 @@ msgstr ""
 msgid "Name (Arabic or English)"
 msgstr ""
 
-#: projects/filters.py:87 projects/templates/sidebar.html:46
+#: projects/filters.py:87 projects/templates/sidebar.html:45
 msgid "Individuals"
 msgstr ""
 
@@ -465,7 +469,7 @@ msgstr ""
 msgid "Job Description"
 msgstr ""
 
-#: projects/filters.py:145
+#: projects/filters.py:145 projects/tables.py:233
 msgid "Lookup Value"
 msgstr ""
 
@@ -476,15 +480,15 @@ msgid ""
 "first and come back here"
 msgstr ""
 
-#: projects/forms.py:152
+#: projects/forms.py:162
 msgid "Court Name (Arabic)"
 msgstr ""
 
-#: projects/forms.py:153
+#: projects/forms.py:163
 msgid "Court Name (English)"
 msgstr ""
 
-#: projects/forms.py:154 projects/models.py:67
+#: projects/forms.py:164 projects/models.py:67
 msgid "Court Type"
 msgstr ""
 
@@ -640,7 +644,7 @@ msgstr ""
 msgid "The user associated with this employee holds the credentials data."
 msgstr ""
 
-#: projects/models.py:203 projects/templates/sidebar.html:68
+#: projects/models.py:203 projects/templates/sidebar.html:69
 msgid "Employees"
 msgstr ""
 
@@ -676,7 +680,7 @@ msgstr ""
 msgid "City"
 msgstr ""
 
-#: projects/models.py:262 projects/templates/sidebar.html:45
+#: projects/models.py:262 projects/templates/sidebar.html:46
 msgid "Organizations"
 msgstr ""
 
@@ -684,7 +688,7 @@ msgstr ""
 msgid "Court"
 msgstr ""
 
-#: projects/models.py:285
+#: projects/models.py:285 projects/templates/sidebar.html:47
 msgid "Courts"
 msgstr ""
 
@@ -815,12 +819,16 @@ msgstr ""
 msgid "View"
 msgstr ""
 
-#: projects/tables.py:30 projects/tables.py:191
+#: projects/tables.py:30 projects/tables.py:204
 msgid "Edit"
 msgstr ""
 
 #: projects/tables.py:36
 msgid "Delete"
+msgstr ""
+
+#: projects/tables.py:156 projects/tables.py:174 projects/tables.py:212
+msgid "Name"
 msgstr ""
 
 #: projects/templates/accounting/approve_fund_request.html:4
@@ -898,8 +906,20 @@ msgstr ""
 msgid "New Client"
 msgstr ""
 
+#: projects/templates/projects/courts_listing.html:4
+msgid "Courts Listing"
+msgstr ""
+
+#: projects/templates/projects/courts_listing.html:5
+msgid "All Courts"
+msgstr ""
+
+#: projects/templates/projects/courts_listing.html:8
+msgid "New Court"
+msgstr ""
+
 #: projects/templates/projects/employees_listing.html:4
-#: projects/templates/sidebar.html:72
+#: projects/templates/sidebar.html:73
 msgid "Employees Listing"
 msgstr ""
 
@@ -912,7 +932,7 @@ msgid "New Employee"
 msgstr ""
 
 #: projects/templates/projects/lookups_listing.html:4
-#: projects/templates/sidebar.html:77
+#: projects/templates/sidebar.html:78
 msgid "Lookups Listing"
 msgstr ""
 
@@ -1005,11 +1025,11 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: projects/templates/sidebar.html:71
+#: projects/templates/sidebar.html:72
 msgid "Users"
 msgstr ""
 
-#: projects/templates/sidebar.html:90 projects/templates/top_navigation.html:23
+#: projects/templates/sidebar.html:91 projects/templates/top_navigation.html:23
 msgid "Logout"
 msgstr ""
 
@@ -1158,38 +1178,38 @@ msgstr ""
 msgid "Client was added successfully"
 msgstr ""
 
-#: projects/views.py:268
+#: projects/views.py:275
 msgid "Organization info was updated successfully"
 msgstr ""
 
-#: projects/views.py:275
+#: projects/views.py:282 projects/views.py:289
 msgid "Organization was added successfully"
 msgstr ""
 
-#: projects/views.py:281
+#: projects/views.py:295
 msgid "Reminder was created successfully."
 msgstr ""
 
-#: projects/views.py:302
+#: projects/views.py:316
 msgid "Employee was created successfully."
 msgstr ""
 
-#: projects/views.py:311
+#: projects/views.py:325
 msgid "Employee info was updated successfully"
 msgstr ""
 
-#: projects/views.py:326
+#: projects/views.py:340
 msgid "Lookup was added successfully"
 msgstr ""
 
-#: projects/views.py:334
+#: projects/views.py:348
 msgid "Lookup was updated successfully"
 msgstr ""
 
-#: projects/views.py:349
+#: projects/views.py:363
 msgid "User was added successfully"
 msgstr ""
 
-#: projects/views.py:357
+#: projects/views.py:371
 msgid "User was updated successfully"
 msgstr ""

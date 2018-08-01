@@ -131,7 +131,7 @@ class Person(models.Model):
         verbose_name_plural = _('Persons')
 
     name_ar = models.CharField(_('Full Name'), max_length=255, null=True, blank=False)
-    name_en = models.CharField(_('Full Name (English)'), max_length=255, null=True, blank=False)
+    name_en = models.CharField(_('Full Name (English)'), max_length=255, null=True, blank=True)
     mobile = models.CharField(_('Mobile'), max_length=20, null=True, blank=False)
     home_phone = models.CharField(_('Home Phone'), max_length=20, null=True, blank=True)
     work_phone = models.CharField(_('Work Phone'), max_length=20, null=True, blank=True)

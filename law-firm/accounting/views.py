@@ -12,20 +12,20 @@ from django_tables2 import SingleTableView, MultiTableMixin, SingleTableMixin
 
 from projects.base_forms import BaseCrispySearchForm
 from archive.filters import DocumentMovementFilter
-from projects.views import BaseFormView
+from projects.views import BaseFormMixin
 from .models import *
 from .forms import *
 from .tables import *
 from .filters import *
 
 
-class BaseAccountingView(LoginRequiredMixin, UserPassesTestMixin):
+class BaseAccountingMixin(LoginRequiredMixin, UserPassesTestMixin):
     def test_func(self):
         return self.request.user.groups.filter(name__in=['Admins', 'Accounting']).exists() \
                or self.request.user.is_superuser
 
 
-class InvoiceListing(BaseAccountingView, SingleTableMixin, FilterView):
+class InvoiceListingView(BaseAccountingMixin, SingleTableMixin, FilterView):
     model = Invoice
     table_class = InvoiceTable
     table_pagination = {
@@ -41,19 +41,19 @@ class InvoiceListing(BaseAccountingView, SingleTableMixin, FilterView):
     #     return self.table_class(self.get_queryset() , user=self.request.user)
 
     def get_table_kwargs(self):
-        kwargs = super(InvoiceListing, self).get_table_kwargs()
+        kwargs = super(InvoiceListingView, self).get_table_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(InvoiceListing, self).get_context_data(**kwargs)
+        context = super(InvoiceListingView, self).get_context_data(**kwargs)
 
         context['search_form'] = BaseCrispySearchForm
 
         return context
 
 
-class UpdateInvoiceView(SuccessMessageMixin, BaseAccountingView, BaseFormView, UpdateView):
+class UpdateInvoiceView(SuccessMessageMixin, BaseAccountingMixin, BaseFormMixin, UpdateView):
     model = Invoice
     form_class = InvoiceForm
     template_name = 'projects/form.html'
@@ -61,7 +61,7 @@ class UpdateInvoiceView(SuccessMessageMixin, BaseAccountingView, BaseFormView, U
     success_message = _('Invoice info was updated successfully')
 
 
-class NewInvoiceView(BaseAccountingView, BaseFormView, CreateView):
+class NewInvoiceView(BaseAccountingMixin, BaseFormMixin, CreateView):
     form_class = NewInvoiceForm
     template_name = 'projects/form.html'
     success_url = reverse_lazy('invoice_listing')
@@ -74,7 +74,7 @@ class NewInvoiceView(BaseAccountingView, BaseFormView, CreateView):
         return kwargs
 
 
-class FundRequestListing(BaseAccountingView, SingleTableMixin, FilterView):
+class FundRequestListingView(BaseAccountingMixin, SingleTableMixin, FilterView):
     model = FundRequest
     table_class = FundRequestTable
     table_pagination = {
@@ -87,20 +87,20 @@ class FundRequestListing(BaseAccountingView, SingleTableMixin, FilterView):
         return FundRequest.objects.all()
 
     def get_table_kwargs(self):
-        kwargs = super(FundRequestListing, self).get_table_kwargs()
+        kwargs = super(FundRequestListingView, self).get_table_kwargs()
         kwargs['user'] = self.request.user
         kwargs['accounting'] = True
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(FundRequestListing, self).get_context_data(**kwargs)
+        context = super(FundRequestListingView, self).get_context_data(**kwargs)
 
         context['search_form'] = BaseCrispySearchForm
 
         return context
 
 
-class FundRequestApprovalView(SuccessMessageMixin, BaseAccountingView, BaseFormView, UpdateView):
+class FundRequestApprovalView(SuccessMessageMixin, BaseAccountingMixin, BaseFormMixin, UpdateView):
     model = FundRequest
     form_class = ApproveFundRequestForm
     template_name = 'accounting/approve_fund_request.html'
@@ -110,7 +110,7 @@ class FundRequestApprovalView(SuccessMessageMixin, BaseAccountingView, BaseFormV
         return reverse_lazy('fund_request_listing')
 
 
-class NewExpenseView(SuccessMessageMixin, BaseAccountingView, BaseFormView, CreateView):
+class NewExpenseView(SuccessMessageMixin, BaseAccountingMixin, BaseFormMixin, CreateView):
     form_class = NewExpenseForm
     template_name = 'accounting/new_expense.html'
     success_url = reverse_lazy('fund_request_listing')
@@ -127,7 +127,7 @@ class NewExpenseView(SuccessMessageMixin, BaseAccountingView, BaseFormView, Crea
         return context
 
 
-class NewPaymentView(SuccessMessageMixin, BaseAccountingView, BaseFormView, CreateView):
+class NewPaymentView(SuccessMessageMixin, BaseAccountingMixin, BaseFormMixin, CreateView):
     form_class = NewPaymentForm
     template_name = 'accounting/new_payment.html'
     success_url = reverse_lazy('invoice_listing')
@@ -144,7 +144,7 @@ class NewPaymentView(SuccessMessageMixin, BaseAccountingView, BaseFormView, Crea
         return context
 
 
-class TransactionListing(BaseAccountingView, SingleTableMixin, FilterView):
+class TransactionListingView(BaseAccountingMixin, SingleTableMixin, FilterView):
     model = Transaction
     table_class = TransactionTable
     table_pagination = {
@@ -157,12 +157,12 @@ class TransactionListing(BaseAccountingView, SingleTableMixin, FilterView):
         return Transaction.objects.all()
 
     def get_table_kwargs(self):
-        kwargs = super(TransactionListing, self).get_table_kwargs()
+        kwargs = super(TransactionListingView, self).get_table_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 
     def get_context_data(self, **kwargs):
-        context = super(TransactionListing, self).get_context_data(**kwargs)
+        context = super(TransactionListingView, self).get_context_data(**kwargs)
 
         context['search_form'] = BaseCrispySearchForm
 

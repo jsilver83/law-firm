@@ -11,10 +11,11 @@ from .models import *
 class DocumentMovementTable(BaseTableWithCommands):
     uploaded_document = tables.FileColumn(verify_exists=True, accessor='document.document')
     move_link = tables.TemplateColumn('{{ html }}', orderable=False, verbose_name='')
+    type = tables.TemplateColumn('{{ html }}', orderable=False, verbose_name=_('Movement Type'))
 
     class Meta:
         model = DocumentMovement
-        fields = ['pk', 'document.pk', 'document.project', 'document', 'uploaded_document', 'document.type', 'type',
+        fields = ['document.pk', 'document.project', 'document', 'uploaded_document', 'document.type', 'type',
                   'handing_party', 'receiving_party','movement_date', 'original_document', ]
         attrs = {'class': 'table table-striped table-bordered',
                  'id': 'datatable'}

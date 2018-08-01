@@ -60,6 +60,7 @@ class LookupAdmin(ImportExportMixin, admin.ModelAdmin):
     list_filter = ('lookup_type',)
     resource_class = LookupResource
 
+
 class UpdateAdminForm(forms.ModelForm):
 
     class Meta:
@@ -70,6 +71,18 @@ class UpdateAdminForm(forms.ModelForm):
 class UpdateAdmin(admin.ModelAdmin):
     form = UpdateAdminForm
     list_display = ['summary_ar', 'summary_en', 'details_ar', 'details_en', 'date', 'attachments', 'inform_the_client']
+
+
+class OrganizationAdmin(ImportExportMixin, admin.ModelAdmin):
+    list_display = ('name_ar', 'name_en', 'type', 'phone', 'city', 'created_on', 'updated_by')
+    search_fields = ['name_ar', 'name_en']
+    list_filter = ('type', 'city',)
+
+
+class CourtAdmin(ImportExportMixin, admin.ModelAdmin):
+    list_display = ('name_ar', 'name_en', 'type', 'phone', 'city', 'created_on', 'updated_by')
+    search_fields = ['name_ar', 'name_en']
+    list_filter = ('type', 'city',)
 
 
 admin.site.site_header = _('Law Firm')
@@ -83,4 +96,5 @@ admin.site.register(Lookup, LookupAdmin)
 admin.site.register(Nationality, NationalityAdmin)
 admin.site.register(Employee, EmployeeAdmin)
 admin.site.register(Update, UpdateAdmin)
-admin.site.register(Court)
+admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(Court, CourtAdmin)

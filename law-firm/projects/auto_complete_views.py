@@ -86,7 +86,7 @@ class NationalityAutocomplete(autocomplete.Select2QuerySetView):
         if not self.request.user.is_authenticated():
             return Nationality.objects.none()
 
-        qs = Nationality.objects.all()
+        qs = Nationality.objects.filter(show=True)
 
         if self.q:
             lang = translation.get_language()

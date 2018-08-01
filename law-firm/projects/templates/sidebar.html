@@ -42,8 +42,9 @@
 			{% endif %}
 				<li><a><i class="fa fa-edit"></i> {% trans 'Clients' %} <span class="fa fa-chevron-down"></span></a>
 					<ul class="nav child_menu">
-						<li><a href="{% url 'organizations' %}">{% trans 'Organizations' %}</a></li>
 						<li><a href="{% url 'clients' %}">{% trans 'Individuals' %}</a></li>
+						<li><a href="{% url 'organizations' %}">{% trans 'Organizations' %}</a></li>
+						<li><a href="{% url 'courts' %}">{% trans 'Courts' %}</a></li>
 					</ul>
 				</li>
 			{% if archive %}

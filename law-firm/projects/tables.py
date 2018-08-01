@@ -92,6 +92,8 @@ class BaseTableWithCommands(tables.Table):
 
 
 class ProjectTable(BaseTableWithCommands):
+    title = tables.Column(verbose_name=_('Title'))
+
     class Meta:
         model = Project
         fields = ['title', 'status', 'main_assignee', 'client', ]
@@ -124,10 +126,14 @@ class ProjectTable(BaseTableWithCommands):
 
 class CaseTable(ProjectTable):
     class Meta(ProjectTable.Meta):
+        model = Case
         fields = ProjectTable.Meta.fields + ['client_role', 'type', 'case_reference', 'court']
 
 
 class ReminderTable(BaseTableWithCommands):
+    title = tables.Column(verbose_name=_('Title'))
+    description = tables.Column(verbose_name=_('Description'))
+
     class Meta:
         model = Reminder
         fields = ['title', 'description', 'whom_to_remind', 'date', 'type', 'project',
@@ -147,7 +153,7 @@ class ReminderTable(BaseTableWithCommands):
 
 class ClientTable(BaseTableWithCommands):
     personal_email = tables.EmailColumn()
-
+    name = tables.Column(verbose_name=_('Name'))
     # organization = tables.RelatedLinkColumn()
 
     class Meta:
@@ -165,6 +171,8 @@ class ClientTable(BaseTableWithCommands):
 
 
 class OrganizationTable(BaseTableWithCommands):
+    name = tables.Column(verbose_name=_('Name'))
+
     class Meta:
         model = Project
         fields = ['name', 'type', 'phone', 'website', 'city', ]
@@ -177,6 +185,11 @@ class OrganizationTable(BaseTableWithCommands):
         else:
             queryset = queryset.order_by(('-' if is_descending else '') + 'name_en')
         return queryset, True
+
+
+class CourtTable(OrganizationTable):
+    class Meta(OrganizationTable.Meta):
+        model = Court
 
 
 class UserTable(BaseTableWithCommands):
@@ -196,6 +209,8 @@ class UserTable(BaseTableWithCommands):
 
 
 class EmployeeTable(BaseTableWithCommands):
+    name = tables.Column(verbose_name=_('Name'))
+
     class Meta:
         model = Employee
         fields = ['name', 'job_description', 'mobile', 'user.email', 'user.is_active',
@@ -215,6 +230,8 @@ class EmployeeTable(BaseTableWithCommands):
 
 
 class LookupTable(BaseTableWithCommands):
+    lookup_value = tables.Column(verbose_name=_('Lookup Value'))
+
     class Meta:
         model = Lookup
         fields = ['lookup_type', 'lookup_value', 'show', 'display_order']

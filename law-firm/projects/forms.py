@@ -131,6 +131,16 @@ class ClientForm(PersonForm):
         )
 
 
+class ClientPopupForm(ClientForm):
+    class Meta(ClientForm.Meta):
+        ClientForm.Meta.widgets.update(
+            {
+                'organization': autocomplete.ModelSelect2(url='org-autocomplete', ),
+                'nationality': autocomplete.ModelSelect2(url='nationality-autocomplete', ),
+            }
+        )
+
+
 class OrganizationForm(BaseUpdatedByForm, forms.ModelForm):
     class Meta:
         model = Organization

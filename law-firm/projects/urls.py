@@ -13,30 +13,33 @@ urlpatterns = [
     url(r'^project/(?P<pk>\d+)/request_fund/$', views.NewFundRequestView.as_view(), name='new_request_fund'),
     url(r'^project/(?P<pk>\d+)/reminder/$', views.NewReminderView.as_view(), name='new_project_reminder'),
 
-    url(r'^clients/$', views.ClientListing.as_view(), name='clients'),
+    url(r'^clients/$', views.ClientListingView.as_view(), name='clients'),
     url(r'^new-client/$', views.NewClientView.as_view(), name='new_client'),
     url(r'^new-client-popup/$', popup_views.NewClientPopupView.as_view(), name='new-client-popup'),
     url(r'^client/(?P<pk>\d+)/$', views.ClientView.as_view(), name='update_client'),
 
-    url(r'^organizations/$', views.OrganizationListing.as_view(), name='organizations'),
+    url(r'^organizations/$', views.OrganizationListingView.as_view(), name='organizations'),
+    url(r'^courts/$', views.CourtsListing.as_view(), name='courts'),
     url(r'^new-organization/$', views.NewOrganizationView.as_view(), name='new_organization'),
     url(r'^new-organization-popup/$', popup_views.NewOrganizationPopupView.as_view(), name='new_organization_popup'),
+    url(r'^new-court/$', views.NewCourtView.as_view(), name='new_court'),
     url(r'^new-court-popup/$', popup_views.NewCourtPopupView.as_view(), name='new-court-popup'),
     url(r'^organization/(?P<pk>\d+)/$', views.OrganizationView.as_view(), name='update_organization'),
+    # url(r'^organization/(?P<pk>\d+)/$', views.OrganizationView.as_view(), name='update_organization'),
 
     url(r'^new_nationality_popup/$', popup_views.NewNationalityPopupView.as_view(), name='new_nationality_popup'),
 
-    url(r'^employees/$', views.EmployeesListing.as_view(), name='employees'),
+    url(r'^employees/$', views.EmployeesListingView.as_view(), name='employees'),
     url(r'^new-employee/$', views.NewEmployeeView.as_view(), name='new_employee'),
     url(r'^employee/(?P<pk>\d+)/$', views.EmployeeView.as_view(), name='update_employee'),
 
 
-    url(r'^users/$', views.UsersListing.as_view(), name='users'),
+    url(r'^users/$', views.UsersListingView.as_view(), name='users'),
     url(r'^user/(?P<pk>\d+)/$', views.UpdateUserView.as_view(), name='update-user'),
     url(r'^new-user/$', views.NewUserView.as_view(), name='new-user'),
     url(r'^new-user-popup/$', popup_views.NewUserView.as_view(), name='new-user-popup'),
 
-    url(r'^lookups/$', views.LookupsListing.as_view(), name='lookups'),
+    url(r'^lookups/$', views.LookupsListingView.as_view(), name='lookups'),
     url(r'^new-lookup/$', views.NewLookupView.as_view(), name='new-lookup'),
     url(r'^lookup/(?P<pk>\d+)/$', views.UpdateLookupView.as_view(), name='update-lookup'),
 

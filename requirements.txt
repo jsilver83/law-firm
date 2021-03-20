@@ -1,5 +1,5 @@
 Django==1.10
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 PyYAML==3.12
 arrow==0.10.0
